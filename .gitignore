@@ -89,3 +89,10 @@ frontend/src/data/smart_irrigation_seed_5_years.json
 # Miscellaneous
 *.bak
 *.tmp
+
+# Local project documentation and agent metadata
+/docs/
+/AGENTS.md
+/docker-compose.yml
+/LICENSE
+/README.md
