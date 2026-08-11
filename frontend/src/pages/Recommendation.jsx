@@ -8,7 +8,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import Loader from '../components/common/Loader.jsx';
 
 const DATASET_URL = '/data/smart_irrigation_seed_5_years.json';
-const DISCLAIMER = 'This recommendation uses simulated weather records and predefined project rules. It does not use soil-moisture sensors and should not replace professional agricultural advice.';
+const DISCLAIMER = 'This recommendation uses saved weather records and predefined project rules. It does not use soil-moisture sensors and should not replace professional agricultural advice.';
 const STATUS_META = {
   'Irrigate Today': { key: 'irrigate', label: 'Irrigate Today', short: 'IRRIGATE', icon: FiDroplet, meaning: 'The farm requires irrigation.' },
   'Delay Irrigation': { key: 'delay', label: 'Delay Irrigation', short: 'DELAY', icon: FiClock, meaning: 'Postpone irrigation because humidity conditions are high.' },
@@ -96,7 +96,7 @@ export default function Recommendation() {
       setDataset(data);
       setFarmId((current) => data.farms.some((farm) => farm._id === current) ? current : (data.farms[0]?._id || ''));
     }).catch((loadError) => {
-      if (loadError.name !== 'AbortError') setError('Unable to load the simulated recommendation dataset.');
+      if (loadError.name !== 'AbortError') setError('Unable to load the saved recommendation records.');
     }).finally(() => { if (!controller.signal.aborted) setLoading(false); });
     return () => controller.abort();
   }, []);
@@ -143,7 +143,7 @@ export default function Recommendation() {
   return <div className="advisor-page">
     <header className="advisor-header">
       <div><div className="advisor-breadcrumb"><Link to="/dashboard">Dashboard</Link><FiChevronRight />Irrigation Advisor</div><h1>Irrigation Recommendation</h1><p>Select a farm and generate practical irrigation advice using saved weather conditions and predefined irrigation rules.</p></div>
-      <span className="advisor-demo"><FiCloud /> Simulated Weather Data</span>
+      <span className="advisor-demo"><FiCloud /> Historical Weather Data</span>
     </header>
 
     <section className="advisor-controls" aria-label="Recommendation controls">
@@ -186,7 +186,7 @@ function RecommendationResult({ result, farm, onGenerate }) {
       <section className={`advisor-result advisor-${meta.key}`}>
         <div className="advisor-result-top"><span className="advisor-result-icon"><StatusIcon /></span><div><span className="advisor-status">{meta.short}</span><h2>{meta.label}</h2><p>{meta.meaning}</p></div></div>
         <p className="advisor-reason">{recommendation.reason}</p>
-        <dl><div><dt>Recommended action</dt><dd>{recommendation.recommendedAction}</dd></div><div><dt>Generated</dt><dd>{formatDate(generated, { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: '2-digit' })}</dd></div><div><dt>Data source</dt><dd>Simulated weather history for {farm.farmName}</dd></div></dl>
+        <dl><div><dt>Recommended action</dt><dd>{recommendation.recommendedAction}</dd></div><div><dt>Generated</dt><dd>{formatDate(generated, { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: '2-digit' })}</dd></div><div><dt>Data source</dt><dd>Saved weather history for {farm.farmName}</dd></div></dl>
       </section>
       <section className="advisor-quality">
         <div><span className="advisor-section-label">Confidence</span><strong>{confidence}%</strong><b>{confidenceLabel(confidence)}</b><div className="advisor-progress"><span style={{ width: `${confidence}%` }} /></div><p>The saved weather fields and matching history record consistently support this recommendation.</p></div>
@@ -199,11 +199,6 @@ function RecommendationResult({ result, farm, onGenerate }) {
     </Section>
 
     <div className="advisor-two-column">
-      <Section title="Why this recommendation was generated" icon={FiCheckCircle}><ul className="advisor-checks"><li className={weather.rainProbability > 60 ? 'matched' : ''}>Rain probability {weather.rainProbability > 60 ? 'is above' : 'is not above'} 60%</li><li className={weather.humidity > 80 && weather.rainProbability <= 60 ? 'matched' : ''}>Humidity {weather.humidity > 80 ? 'is above' : 'is not above'} 80%</li><li className={weather.temperature > 35 && weather.humidity <= 80 && weather.rainProbability <= 60 ? 'matched' : ''}>Temperature {weather.temperature > 35 ? 'is above' : 'is not above'} 35°C</li><li className="matched">Stored result: {title}</li></ul><p className="advisor-note">Rules are evaluated in rain, humidity, temperature, then default priority. The frontend displays the stored result and does not create a different official recommendation.</p></Section>
-      <Section title="Farming and Irrigation Guidance" icon={FiMapPin}><dl className="advisor-farm-details"><div><dt>Farm</dt><dd>{farm.farmName}</dd></div><div><dt>Crop</dt><dd>{farm.cropName}</dd></div><div><dt>Area</dt><dd>{farm.area} {farm.areaUnit}</dd></div><div><dt>Soil type</dt><dd>{farm.soilType}</dd></div><div><dt>Condition</dt><dd>{farm.farmingCondition}</dd></div><div><dt>Existing method</dt><dd>{farm.irrigationMethod}</dd></div></dl><p className="advisor-note">General project guidance: prefer controlled root-zone watering, avoid frequent shallow watering and waterlogging, reduce irrigation as rain probability rises, and irrigate during cooler hours.</p></Section>
-    </div>
-
-    <div className="advisor-two-column">
       <Section title="Best Irrigation Method" icon={FiDroplet}><div className="method-primary"><span>Recommended Method</span><h3>{farm.irrigationMethod || 'Drip irrigation'}</h3><p>Apply water slowly near the plant root zone to reduce evaporation and unnecessary loss.</p></div><dl className="advisor-compact"><div><dt>Suitability</dt><dd>Controlled watering for {farm.cropName}</dd></div><div><dt>Water efficiency</dt><dd>High when correctly maintained</dd></div><div><dt>Important caution</dt><dd>Inspect outlets and check for blockage before starting.</dd></div><div><dt>Alternative</dt><dd>Furrow irrigation only when controlled irrigation is unavailable.</dd></div></dl></Section>
       <Section title="Recommended Irrigation Time" icon={FiClock}><dl className="advisor-schedule"><div><dt>Best time</dt><dd>6:00 AM to 8:00 AM</dd></div><div><dt>Second option</dt><dd>5:30 PM to 7:00 PM</dd></div><div><dt>Avoid</dt><dd>11:00 AM to 4:00 PM</dd></div><div><dt>Recommended date</dt><dd>{formatDate(weather.recordedAt, { day: 'numeric', month: 'long', year: 'numeric' })}</dd></div><div><dt>Recheck conditions</dt><dd>After 12 hours</dd></div></dl><p className="advisor-note">Midday irrigation can increase evaporation and reduce water efficiency.</p></Section>
     </div>
@@ -212,12 +207,20 @@ function RecommendationResult({ result, farm, onGenerate }) {
 
     <Section title={instructionTitle} icon={FiFileText}><ol className="advisor-steps">{INSTRUCTIONS[meta.key].map((step) => <li key={step}><span>{INSTRUCTIONS[meta.key].indexOf(step) + 1}</span><p>{step}</p></li>)}</ol></Section>
 
-    <div className="advisor-two-column advisor-tables">
-      <Section title="Threshold Levels" icon={FiBarChart2}><div className="table-wrap"><table><thead><tr><th>Level</th><th>Meaning</th><th>Suggested Action</th></tr></thead><tbody><tr><td>Low</td><td>No immediate need</td><td>Continue monitoring</td></tr><tr><td>Medium</td><td>Possible irrigation need</td><td>Inspect field and weather</td></tr><tr><td>High</td><td>Irrigation likely needed</td><td>Prepare irrigation</td></tr><tr><td>Very High</td><td>Urgent condition</td><td>Act at recommended time</td></tr></tbody></table></div></Section>
-      <Section title="Weather Indicator Categories" icon={FiThermometer}><div className="table-wrap"><table><thead><tr><th>Metric</th><th>Low</th><th>Medium</th><th>High</th><th>Very High</th></tr></thead><tbody><tr><td>Temperature</td><td>&lt;25°C</td><td>25–30°C</td><td>31–35°C</td><td>&gt;35°C</td></tr><tr><td>Humidity</td><td>&lt;40%</td><td>40–70%</td><td>71–80%</td><td>&gt;80%</td></tr><tr><td>Rain</td><td>0–20%</td><td>21–40%</td><td>41–60%</td><td>&gt;60%</td></tr><tr><td>Wind</td><td>0–8</td><td>9–16</td><td>17–25</td><td>&gt;25 km/h</td></tr></tbody></table></div><p className="advisor-note">These labels are project display categories, not certified agronomic thresholds.</p></Section>
-    </div>
-
-    <details className="advisor-confidence-details"><summary>How confidence is calculated</summary><p>Confidence starts at 50 points. It adds points for a clearly triggered rule, supporting indicators, complete weather data, and a matching saved history record. Missing or conflicting data reduces the score. It is capped between 0 and 100.</p><strong>Confidence is a supporting quality indicator only. The official recommendation remains the stored recommendation status.</strong></details>
+    <details className="advisor-more-details">
+      <summary><span><FiInfo /><b>Additional recommendation details</b><small>Rules, farm information, thresholds, and confidence methodology</small></span><FiChevronRight /></summary>
+      <div className="advisor-more-content">
+        <div className="advisor-two-column">
+          <Section title="Why this recommendation was generated" icon={FiCheckCircle}><ul className="advisor-checks"><li className={weather.rainProbability > 60 ? 'matched' : ''}>Rain probability {weather.rainProbability > 60 ? 'is above' : 'is not above'} 60%</li><li className={weather.humidity > 80 && weather.rainProbability <= 60 ? 'matched' : ''}>Humidity {weather.humidity > 80 ? 'is above' : 'is not above'} 80%</li><li className={weather.temperature > 35 && weather.humidity <= 80 && weather.rainProbability <= 60 ? 'matched' : ''}>Temperature {weather.temperature > 35 ? 'is above' : 'is not above'} 35°C</li><li className="matched">Stored result: {title}</li></ul><p className="advisor-note">Rules are evaluated in rain, humidity, temperature, then default priority. The frontend displays the stored result and does not create a different official recommendation.</p></Section>
+          <Section title="Farm and Crop Information" icon={FiMapPin}><dl className="advisor-farm-details"><div><dt>Farm</dt><dd>{farm.farmName}</dd></div><div><dt>Crop</dt><dd>{farm.cropName}</dd></div><div><dt>Area</dt><dd>{farm.area} {farm.areaUnit}</dd></div><div><dt>Soil type</dt><dd>{farm.soilType}</dd></div><div><dt>Condition</dt><dd>{farm.farmingCondition}</dd></div><div><dt>Existing method</dt><dd>{farm.irrigationMethod}</dd></div></dl><p className="advisor-note">General project guidance: prefer controlled root-zone watering, avoid frequent shallow watering and waterlogging, reduce irrigation as rain probability rises, and irrigate during cooler hours.</p></Section>
+        </div>
+        <div className="advisor-two-column advisor-tables">
+          <Section title="Threshold Levels" icon={FiBarChart2}><div className="table-wrap"><table><thead><tr><th>Level</th><th>Meaning</th><th>Suggested Action</th></tr></thead><tbody><tr><td>Low</td><td>No immediate need</td><td>Continue monitoring</td></tr><tr><td>Medium</td><td>Possible irrigation need</td><td>Inspect field and weather</td></tr><tr><td>High</td><td>Irrigation likely needed</td><td>Prepare irrigation</td></tr><tr><td>Very High</td><td>Urgent condition</td><td>Act at recommended time</td></tr></tbody></table></div></Section>
+          <Section title="Weather Indicator Categories" icon={FiThermometer}><div className="table-wrap"><table><thead><tr><th>Metric</th><th>Low</th><th>Medium</th><th>High</th><th>Very High</th></tr></thead><tbody><tr><td>Temperature</td><td>&lt;25°C</td><td>25–30°C</td><td>31–35°C</td><td>&gt;35°C</td></tr><tr><td>Humidity</td><td>&lt;40%</td><td>40–70%</td><td>71–80%</td><td>&gt;80%</td></tr><tr><td>Rain</td><td>0–20%</td><td>21–40%</td><td>41–60%</td><td>&gt;60%</td></tr><tr><td>Wind</td><td>0–8</td><td>9–16</td><td>17–25</td><td>&gt;25 km/h</td></tr></tbody></table></div><p className="advisor-note">These labels are project display categories, not certified agronomic thresholds.</p></Section>
+        </div>
+        <div className="advisor-confidence-copy"><h3>How confidence is calculated</h3><p>Confidence starts at 50 points. It adds points for a clearly triggered rule, supporting indicators, complete weather data, and a matching saved history record. Missing or conflicting data reduces the score. It is capped between 0 and 100.</p><strong>Confidence is a supporting quality indicator only. The official recommendation remains the stored recommendation status.</strong></div>
+      </div>
+    </details>
 
     <div className="advisor-actions"><button type="button" className="advisor-primary" onClick={onGenerate}><FiRefreshCw />Generate New Recommendation</button><Link to={`/history?farm=${farm._id}`}><FiFileText />View Recommendation History</Link><Link to={`/farms/${farm._id}`}><FiMapPin />View Farm</Link><Link to={`/weather?farm=${farm._id}`}><FiCloud />View Weather Record</Link><button type="button" onClick={() => window.print()}><FiPrinter />Print Recommendation</button></div>
   </div>;

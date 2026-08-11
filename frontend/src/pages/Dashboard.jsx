@@ -1,31 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
-  FiCalendar, FiChevronLeft, FiChevronRight, FiCloud, FiCloudRain, FiDroplet,
+  FiCalendar, FiCloud, FiCloudRain, FiDroplet,
   FiMapPin, FiPause, FiPlay, FiSun, FiWind,
 } from 'react-icons/fi';
 import RainProbabilityChart from '../components/analytics/RainProbabilityChart.jsx';
-import RecommendationPieChart from '../components/analytics/RecommendationPieChart.jsx';
 import TemperatureHumidityChart from '../components/analytics/TemperatureHumidityChart.jsx';
-import WeatherConditionPieChart from '../components/analytics/WeatherConditionPieChart.jsx';
 import WindSpeedChart from '../components/analytics/WindSpeedChart.jsx';
 import Loader from '../components/common/Loader.jsx';
 import { display } from '../utils/formatters.js';
 
 const DATASET_URL = '/data/smart_irrigation_seed_5_years.json';
-const DEMO_DISCLAIMER = 'This recommendation is generated from simulated seed data for project demonstration.';
-const RECOMMENDATION_ORDER = [
-  'Irrigate Today',
-  'No Irrigation Required',
-  'Delay Irrigation',
-  'Monitor Weather',
-];
-const SPEED_OPTIONS = [
-  { label: '1 second = 1 day', value: 1000 },
-  { label: '5 seconds = 1 day', value: 5000 },
-  { label: '10 seconds = 1 day', value: 10000 },
-  { label: 'Manual', value: 0 },
-];
-
+const PLAYBACK_INTERVAL_MS = 4000;
+const DEMO_DISCLAIMER = 'This recommendation is generated from stored weather records and predefined project rules.';
 const safeNumber = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
 const formatDate = (value, compact = false) => {
   const date = new Date(value);
@@ -37,19 +23,11 @@ const formatDate = (value, compact = false) => {
 const normalizeRecommendationTitle = (record) => (
   record?.title || record?.status?.replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
 );
-const summarize = (items, getName) => Object.values(items.reduce((result, item) => {
-  const name = getName(item) || 'Unknown';
-  result[name] ||= { name, value: 0 };
-  result[name].value += 1;
-  return result;
-}, {}));
-
 export default function Dashboard() {
   const [seedData, setSeedData] = useState(null);
   const [selectedFarmId, setSelectedFarmId] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [simulationSpeed, setSimulationSpeed] = useState(5000);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -100,15 +78,6 @@ export default function Dashboard() {
     () => farmWeather.slice(Math.max(0, currentIndex - 6), currentIndex + 1),
     [farmWeather, currentIndex],
   );
-  const visibleStart = visibleWeather[0] ? new Date(visibleWeather[0].recordedAt).getTime() : null;
-  const visibleEnd = currentWeather ? new Date(currentWeather.recordedAt).getTime() : null;
-  const visibleRecommendations = useMemo(
-    () => farmRecommendations.filter((record) => {
-      const time = new Date(record.generatedAt).getTime();
-      return visibleStart !== null && visibleEnd !== null && time >= visibleStart && time <= visibleEnd + 86400000;
-    }),
-    [farmRecommendations, visibleStart, visibleEnd],
-  );
   const currentRecommendation = useMemo(
     () => farmRecommendations.find((record) => record.weatherSnapshot?.weatherHistoryId === currentWeather?._id),
     [farmRecommendations, currentWeather],
@@ -123,24 +92,13 @@ export default function Dashboard() {
     })),
     [visibleWeather],
   );
-  const recommendationSummary = useMemo(() => {
-    const counts = summarize(visibleRecommendations, normalizeRecommendationTitle);
-    return RECOMMENDATION_ORDER
-      .map((name) => counts.find((item) => item.name === name) || { name, value: 0 })
-      .filter((item) => item.value > 0);
-  }, [visibleRecommendations]);
-  const conditionSummary = useMemo(
-    () => summarize(visibleWeather, (record) => record.weatherCondition),
-    [visibleWeather],
-  );
-
   useEffect(() => {
     setCurrentIndex(0);
     setIsPlaying(false);
   }, [selectedFarmId]);
 
   useEffect(() => {
-    if (!isPlaying || !simulationSpeed || farmWeather.length < 2) return undefined;
+    if (!isPlaying || farmWeather.length < 2) return undefined;
     const intervalId = window.setInterval(() => {
       setCurrentIndex((index) => {
         if (index >= farmWeather.length - 1) {
@@ -149,33 +107,22 @@ export default function Dashboard() {
         }
         return index + 1;
       });
-    }, simulationSpeed);
+    }, PLAYBACK_INTERVAL_MS);
     return () => window.clearInterval(intervalId);
-  }, [isPlaying, simulationSpeed, farmWeather.length]);
+  }, [isPlaying, farmWeather.length]);
 
-  const moveDay = (direction) => {
-    setIsPlaying(false);
-    setCurrentIndex((index) => Math.min(Math.max(index + direction, 0), farmWeather.length - 1));
-  };
-
-  const changeSpeed = (event) => {
-    const nextSpeed = Number(event.target.value);
-    setSimulationSpeed(nextSpeed);
-    if (nextSpeed === 0) setIsPlaying(false);
-  };
-
-  if (loading) return <Loader label="Loading simulated weather data" />;
+  if (loading) return <Loader label="Loading weather history" />;
   if (error) return <section className="card dataset-error" role="alert"><FiCloudRain /><h1>Dataset unavailable</h1><p>{error}</p></section>;
 
   return (
     <div className="dashboard simulation-dashboard">
       <section className="dashboard-welcome">
         <div>
-          <span className="dashboard-kicker">Historical weather simulation</span>
-          <h1>Smart Irrigation Dashboard</h1>
-          <p>Explore five years of synthetic farm weather and stored irrigation advice.</p>
+          <span className="dashboard-kicker">Historical weather</span>
+          <h1>KisanSetu Dashboard</h1>
+          <p>Explore five years of farm weather history and stored irrigation advice.</p>
         </div>
-        <span className="demo-badge"><FiCloud /> Simulated Weather Data</span>
+        <span className="demo-badge"><FiCloud /> Historical Weather Data</span>
       </section>
 
       <section className="dashboard-toolbar simulation-toolbar card" aria-label="Simulation settings">
@@ -186,26 +133,14 @@ export default function Dashboard() {
           </select>
         </label>
         <div className="simulation-controls">
-          <button type="button" onClick={() => moveDay(-1)} disabled={currentIndex === 0}>
-            <FiChevronLeft /> Previous Day
-          </button>
           {!isPlaying
-            ? <button className="play-button" type="button" onClick={() => setIsPlaying(true)} disabled={!simulationSpeed || currentIndex >= farmWeather.length - 1}><FiPlay /> Play Simulation</button>
+            ? <button className="play-button" type="button" onClick={() => setIsPlaying(true)} disabled={currentIndex >= farmWeather.length - 1}><FiPlay /> Play Timeline</button>
             : <button className="play-button" type="button" onClick={() => setIsPlaying(false)}><FiPause /> Pause</button>}
-          <button type="button" onClick={() => moveDay(1)} disabled={currentIndex >= farmWeather.length - 1}>
-            Next Day <FiChevronRight />
-          </button>
         </div>
-        <label className="speed-selector">
-          <span>Simulation Speed</span>
-          <select value={simulationSpeed} onChange={changeSpeed}>
-            {SPEED_OPTIONS.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
-          </select>
-        </label>
       </section>
 
-      {!farmWeather.length ? <section className="card dashboard-inline-empty">No simulated weather records are available for this farm.</section> : <>
-        <section className="dashboard-stats weather-summary" aria-label="Current simulated weather">
+      {!farmWeather.length ? <section className="card dashboard-inline-empty">No weather records are available for this farm.</section> : <>
+        <section className="dashboard-stats weather-summary" aria-label="Current weather record">
           <Metric icon={<FiSun />} color="amber" label="Temperature" value={`${display(currentWeather.temperature)}°C`} />
           <Metric icon={<FiDroplet />} color="cyan" label="Humidity" value={`${display(currentWeather.humidity)}%`} />
           <Metric icon={<FiCloudRain />} color="blue" label="Rain Probability" value={`${display(currentWeather.rainProbability)}%`} />
@@ -213,23 +148,12 @@ export default function Dashboard() {
           <Metric icon={<FiCloud />} color="indigo" label="Pressure" value={`${display(currentWeather.pressure)} hPa`} />
           <Metric icon={<FiCloud />} color="green" label="Weather Condition" value={display(currentWeather.weatherCondition)} />
           <Metric icon={<FiDroplet />} color="blue" label="Latest Recommendation" value={normalizeRecommendationTitle(currentRecommendation) || 'Not available'} />
-          <Metric icon={<FiCalendar />} color="amber" label="Simulation Date" value={formatDate(currentWeather.recordedAt)} />
-        </section>
-
-        <section className="simulation-progress card">
-          <div><span>Simulation timeline</span><strong>{formatDate(currentWeather.recordedAt)} · Day {currentIndex + 1} of {farmWeather.length}</strong></div>
-          <progress value={currentIndex + 1} max={farmWeather.length} aria-label="Simulation progress" />
+          <Metric icon={<FiCalendar />} color="amber" label="Record Date" value={formatDate(currentWeather.recordedAt)} />
         </section>
 
         <TemperatureHumidityChart data={weatherTrend} periodLabel="7-Day" />
-        <div className="analytics-grid">
-          <RainProbabilityChart data={weatherTrend} periodLabel="7-Day" />
-          <RecommendationPieChart data={recommendationSummary} periodLabel="7-Day" />
-        </div>
-        <div className="analytics-grid">
-          <WindSpeedChart data={weatherTrend} periodLabel="7-Day" />
-          <WeatherConditionPieChart data={conditionSummary} periodLabel="7-Day" />
-        </div>
+        <RainProbabilityChart data={weatherTrend} periodLabel="7-Day" />
+        <WindSpeedChart data={weatherTrend} periodLabel="7-Day" />
 
         <div className="dashboard-lower-grid simulation-details">
           <FarmInformation farm={selectedFarm} />
@@ -241,7 +165,7 @@ export default function Dashboard() {
 }
 
 function Metric({ icon, color, label, value }) {
-  return <article className="metric-card"><span className={`metric-icon ${color}`}>{icon}</span><div><span>{label}</span><strong>{value}</strong><small>Simulated dataset reading</small></div></article>;
+  return <article className="metric-card"><span className={`metric-icon ${color}`}>{icon}</span><div><span>{label}</span><strong>{value}</strong><small>Recorded weather value</small></div></article>;
 }
 
 function FarmInformation({ farm }) {
@@ -268,7 +192,7 @@ function CurrentRecommendation({ recommendation }) {
       <div className="recommendation-copy"><span>Reason</span><p>{recommendation.reason}</p></div>
       <div className="spotlight-action"><span>Recommended Action</span><strong>{recommendation.recommendedAction}</strong></div>
       <div className="recommendation-generated"><FiCalendar /> Generated {formatDate(recommendation.generatedAt)}</div>
-    </> : <p>No stored recommendation matches this simulated weather record.</p>}
+    </> : <p>No stored recommendation matches this weather record.</p>}
     <p className="simulation-disclaimer">{DEMO_DISCLAIMER}</p>
   </section>;
 }

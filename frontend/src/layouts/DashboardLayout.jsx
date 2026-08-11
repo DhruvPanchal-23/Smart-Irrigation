@@ -31,7 +31,7 @@ export default function DashboardLayout() {
 
   return <div className="shell">
     <aside className={menuOpen ? 'open' : ''} aria-label="Dashboard navigation" aria-hidden={!menuOpen ? undefined : false}>
-      <div className="sidebar-brand"><span className="brand-mark"><FiDroplet /></span><div><strong>Smart Irrigation</strong><small>Water Smart, Farm Smart</small></div><button className="sidebar-close" onClick={() => setMenuOpen(false)} aria-label="Close navigation"><FiX /></button></div>
+      <div className="sidebar-brand"><span className="brand-mark"><FiDroplet /></span><div><strong>KisanSetu</strong><small>Water Smart, Farm Smart</small></div><button className="sidebar-close" onClick={() => setMenuOpen(false)} aria-label="Close navigation"><FiX /></button></div>
       <nav><span className="nav-label">Workspace</span>{links.map(([to, label, Icon]) => <NavLink key={to} to={to} onClick={() => setMenuOpen(false)}><Icon /><span>{label}</span></NavLink>)}</nav>
       <div className="sidebar-promo"><FiDroplet /><strong>Save Water<br />Grow Better</strong><small>Every drop counts!</small></div>
       <div className="sidebar-user"><span className="avatar small">{initials}</span><div><strong>{auth.user?.name || 'Farmer'}</strong><small>{auth.user?.email || 'Your account'}</small></div></div>
