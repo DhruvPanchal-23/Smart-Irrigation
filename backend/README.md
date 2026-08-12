@@ -2,6 +2,12 @@
 
 Express 5 and Mongoose API under `/api/v1`. Configure the values documented in `.env.example`, then run `npm run dev`. Use `npm test` for the Node test suite.
 
+## Production database
+
+Vercel must use a MongoDB Atlas `MONGODB_URI`; a localhost URI only works during local development. Configure `MONGODB_URI`, `JWT_SECRET`, and `FRONTEND_URL` in the Vercel Production environment, allow the deployment to reach Atlas, and redeploy after changing environment variables. `FRONTEND_URL` may include a trailing slash; the API normalizes it before applying CORS.
+
+`GET /api/v1/health` establishes the database connection and returns `503 DATABASE_UNAVAILABLE` when MongoDB cannot be reached. Database-backed requests use the same cached connection across warm serverless invocations.
+
 ## Five-year development seed
 
 The bundled synthetic dataset contains one farmer, five farms, and five years of

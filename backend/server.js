@@ -14,6 +14,6 @@ try
     process.on('SIGTERM', shutdown); 
 } catch (error) 
 { 
-    console.error(`Startup failed: ${error.message}`); 
+    console.error('Startup failed', { name: error.name, code: error.code, message: error.message });
     process.exit(1);
 }
