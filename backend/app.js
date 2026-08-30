@@ -1,9 +1,27 @@
-import express from 'express'; import cors from 'cors'; import authRoutes from './routes/auth.routes.js'; import userRoutes from './routes/user.routes.js'; import farmRoutes from './routes/farm.routes.js'; import weatherRoutes from './routes/weather.routes.js'; import recommendationRoutes from './routes/recommendation.routes.js'; import { notFound, errorHandler } from './middleware/error.middleware.js';
+import express from 'express';
+import cors from 'cors';
+import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
+import farmRoutes from './routes/farm.routes.js';
+import weatherRoutes from './routes/weather.routes.js';
+import recommendationRoutes from './routes/recommendation.routes.js';
+import { getDatabaseStatus } from './config/db.js';
+import { requireDatabase } from './middleware/database.middleware.js';
+import { notFound, errorHandler } from './middleware/error.middleware.js';
+
+export const normalizeOrigin = (origin) => origin.replace(/\/+$/, '');
+
 const app = express();
 app.disable('x-powered-by');
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }));
-app.use(express.json({ limit: '20kb' })); app.use(express.urlencoded({ extended: false }));
-app.get('/api/v1/health', (_req, res) => res.json({ success: true, message: 'Service is healthy', data: { status: 'ok' } }));
+app.use(cors({ origin: normalizeOrigin(process.env.FRONTEND_URL || 'http://localhost:5173') }));
+app.use(express.json({ limit: '20kb' }));
+app.use(express.urlencoded({ extended: false }));
+app.use('/api/v1', requireDatabase);
+app.get('/api/v1/health', (_req, res) => res.json({
+  success: true,
+  message: 'Service is healthy',
+  data: { status: 'ok', database: getDatabaseStatus() },
+}));
 app.use('/api/v1/auth', authRoutes); 
 app.use('/api/v1/users', userRoutes); 
 app.use('/api/v1/farms', farmRoutes); 

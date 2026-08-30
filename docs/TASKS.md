@@ -3093,3 +3093,10 @@ Suitable for college submission
 - [!] Configure MongoDB Atlas/Vercel production secrets and verify registration in the deployed environment.
 - [x] Update the backend environment template and setup documentation for MongoDB Atlas connection strings.
 - [x] Validate the production Atlas URI safely, reconnect after dropped warm-function connections, and test nested provider error classification.
+
+## Login Database Integration Fix - 2026-08-31
+
+- [x] Restore database initialization middleware for every `/api/v1` request.
+- [x] Restore normalized frontend-origin handling and database-aware health responses.
+- [x] Verify local MongoDB connectivity and the login invalid-credentials response.
+- [x] Pass backend tests, frontend lint, and the frontend production build.

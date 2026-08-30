@@ -3543,3 +3543,9 @@ all describe and implement the same system.
 - [ ] Set the production Atlas `MONGODB_URI` and `JWT_SECRET` in Vercel, allow network access, redeploy, and verify registration/login.
 - [ ] Replace the local `MONGODB_URI` in `backend/.env` with the real Atlas connection string and verify connectivity (credentials are intentionally not stored in tracked files).
 - [!] Production health check still returns `503`; verify Atlas Database Access/Network Access and the backend Vercel Production `MONGODB_URI`, then redeploy.
+
+## Login Database Integration Fix - 2026-08-31
+
+- [x] Restore the app-level database middleware required by login and other database-backed routes.
+- [x] Verify the local health and invalid-login API responses.
+- [ ] Redeploy the backend and verify login with a registered production account.
