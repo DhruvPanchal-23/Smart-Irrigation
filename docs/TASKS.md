@@ -3091,3 +3091,5 @@ Suitable for college submission
 - [x] Normalize the configured production frontend origin for CORS.
 - [x] Make the health endpoint verify and report database readiness.
 - [!] Configure MongoDB Atlas/Vercel production secrets and verify registration in the deployed environment.
+- [x] Update the backend environment template and setup documentation for MongoDB Atlas connection strings.
+- [x] Validate the production Atlas URI safely, reconnect after dropped warm-function connections, and test nested provider error classification.

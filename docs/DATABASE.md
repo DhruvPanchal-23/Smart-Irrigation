@@ -55,13 +55,11 @@ Recommended production database:
 
 smart_irrigation_prod
 
-Environment variable:
+Environment variable for MongoDB Atlas:
 
-MONGODB_URI=mongodb://127.0.0.1:27017/smart_irrigation
+MONGODB_URI=mongodb+srv://<username>:<url-encoded-password>@<cluster>.mongodb.net/smart_irrigation?retryWrites=true&w=majority
 
-For MongoDB Atlas:
-
-MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>/<database>
+The Atlas database user must have access to `smart_irrigation`, and the application host must be allowed in Atlas Network Access. Special characters in the password must be URL-encoded.
 
 Never commit the real connection string.
 

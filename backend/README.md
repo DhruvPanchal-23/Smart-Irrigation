@@ -6,7 +6,13 @@ Express 5 and Mongoose API under `/api/v1`. Configure the values documented in `
 
 Vercel must use a MongoDB Atlas `MONGODB_URI`; a localhost URI only works during local development. Configure `MONGODB_URI`, `JWT_SECRET`, and `FRONTEND_URL` in the Vercel Production environment, allow the deployment to reach Atlas, and redeploy after changing environment variables. `FRONTEND_URL` may include a trailing slash; the API normalizes it before applying CORS.
 
+For local development with Atlas, copy `.env.example` to `.env` and replace the URI placeholders with the Atlas database user's credentials and cluster hostname. Keep `/smart_irrigation` in the URI so the application uses the documented database. URL-encode special characters in the password, add the current machine's IP address in Atlas Network Access, and never commit `.env`.
+
+Production startup rejects missing or malformed database configuration, non-SRV MongoDB URLs, and database names other than `smart_irrigation` before attempting a network connection. The URI value is never included in errors or logs.
+
 `GET /api/v1/health` establishes the database connection and returns `503 DATABASE_UNAVAILABLE` when MongoDB cannot be reached. Database-backed requests use the same cached connection across warm serverless invocations.
+
+When a connection fails, Function Logs include only a safe `category` (`configuration`, `dns`, `authentication`, `network_access`, `timeout`, or `database_unavailable`) plus the error name/code. Connection strings and credentials are never logged.
 
 ## Five-year development seed
 

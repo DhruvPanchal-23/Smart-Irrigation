@@ -241,7 +241,6 @@ Install the following before running the project:
 
 Node.js
 npm
-MongoDB Community Server
 MongoDB Compass
 Git
 
@@ -281,7 +280,7 @@ Example:
 NODE_ENV=development
 PORT=8000
 
-MONGODB_URI=mongodb://127.0.0.1:27017/smart_irrigation
+MONGODB_URI=mongodb+srv://<username>:<url-encoded-password>@<cluster>.mongodb.net/smart_irrigation?retryWrites=true&w=majority
 
 JWT_SECRET=replace_with_a_long_secure_random_value
 JWT_EXPIRES_IN=1h
@@ -330,13 +329,11 @@ Expected frontend URL:
 
 http://localhost:5173
 
-11. MongoDB Compass Setup
+11. MongoDB Atlas and Compass Setup
 
-Open MongoDB Compass.
+Create an Atlas database user, allow your current IP address under Atlas Network Access, and copy the driver connection string into `backend/.env` as `MONGODB_URI`. Keep `smart_irrigation` as the database name and URL-encode special characters in the password.
 
-Use this connection string:
-
-mongodb://127.0.0.1:27017
+You can use the same Atlas connection string in MongoDB Compass. Never commit it.
 
 Connect and verify the database:
 
