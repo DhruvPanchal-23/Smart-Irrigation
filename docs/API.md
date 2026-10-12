@@ -2241,3 +2241,7 @@ The optional combined `GET /api/v1/dashboard` endpoint is not required by the
 current frontend. Date-range filtering and chart aggregation operate only on
 records returned by these endpoints; the frontend does not invent weather or
 recommendation records.
+
+### Error-check fixes - 12 October 2026
+GET /health aliases GET /api/v1/health. Both return service status and database readiness. Weather responses retain existing fields; rainProbability is a 0-100 percentage from the earliest returned OpenWeather three-hour forecast (cnt=1), alongside current conditions. Missing/invalid numeric provider data returns 502 rather than invented zero rain. Each external request has an 8-second timeout; provider timeouts return 504.
+

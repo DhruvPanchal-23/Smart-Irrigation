@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiArrowRight, FiCloudRain, FiEye, FiEyeOff, FiLock, FiMail, FiPhone, FiUser } from 'react-icons/fi';
+import { FiArrowRight, FiDroplet, FiEye, FiEyeOff, FiLock, FiMail, FiPhone, FiUser } from 'react-icons/fi';
 import useAuth from '../hooks/useAuth.js';
 import Alert from '../components/common/Alert.jsx';
 
@@ -32,12 +32,10 @@ export default function Register() {
   };
 
   return (
-    <section className="register-page">
-      <div className="register-story" aria-hidden="true">
-        <div className="register-orbit register-orbit-one" />
-        <div className="register-orbit register-orbit-two" />
+    <section className="register-page registration-page">
+      <div className="register-story">
         <div className="register-story-content">
-          <span className="register-story-mark"><FiCloudRain /></span>
+          <span className="register-story-mark"><FiDroplet /></span>
           <p className="register-story-kicker">Start smarter irrigation</p>
           <h1>Grow better<br />with KisanSetu.</h1>
           <p className="register-story-copy">

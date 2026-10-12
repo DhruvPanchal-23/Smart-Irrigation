@@ -1731,3 +1731,182 @@ Build the pages in this order:
 Do not generate the entire project in one large file.
 
 Generate each page and component in its correct folder and keep the implementation consistent with the project architecture and documentation.
+
+## Accent update - 12 October 2026
+
+Green/teal decorative UI accents are replaced by blue (#2563EB), dark blue
+(#1D4ED8) hover states and light blue tints. Existing brown navigation/surfaces,
+warm neutral backgrounds, semantic statuses and agricultural illustrations remain.
+This supersedes the Fresh Emerald primary accent specified above.
+
+### Brighter blue preference
+
+Per the user's subsequent request, use primary blue (#2563EB) instead of dark
+blue for accents, panels and hover states. This supersedes the dark-blue hover
+instruction above. Warm neutral colors remain as previously specified.
+
+### Landing liquid-glass buttons â€” 12 October 2026
+
+Per the supplied user reference, the landing Get started, About KisanSetu,
+header Sign up, Start with KisanSetu, and Create your farm account actions use
+frosted silver pill surfaces with dark labels, backdrop blur, inset rim highlights,
+and soft shadows. This overrides the solid blue/white fills for these five
+actions only. Keep visible blue focus rings, reduced-motion support, and an
+opaque gradient fallback when backdrop filtering is unavailable.
+
+The stronger glass revision uses a mostly transparent core, 8px backdrop blur,
+more saturated background detail, and brighter double rims. Hero/header labels
+are white with a dark text shadow; About labels stay dark on light surfaces.
+
+
+The landing glass buttons now have no border or inset rim lines, per user request.
+Translucent fills, reflective gradients, blur, and soft shadows remain. Keyboard
+focus outlines remain visible for accessibility.
+
+
+The latest borderless revision removes the inset pseudo-element reflection and
+all inset shadows that appeared as a rim. Glass fills use 3–15% white opacity
+(5–20% on hover) with 5px blur for clearer background visibility.
+
+
+The landing Explore down-arrow circle also uses borderless translucent glass,
+6px backdrop blur, a soft shadow, and accessible focus/reduced-motion states.
+
+
+The Explore circle's latest finish uses 1–6% white fill, 3px blur, and a lighter
+shadow for greater transparency; hover fill remains subtle at 3–10%.
+
+
+The Explore arrow circle now has a localized reflective sheen over a nearly
+clear fill, 2px blur, and increased saturation. It remains borderless.
+
+
+The sugarcane illustration's text overlay uses borderless frosted glass with
+30–50% white gradient opacity, 14px backdrop blur, and dark readable labels.
+An opaque fill is retained as a fallback where backdrop filtering is unsupported.
+
+
+Glassmorphism now covers the entire sugarcane illustration component: translucent
+landscape layers, 16px backdrop blur, softened sun/cane artwork, and a borderless
+soft shadow. The frosted text panel remains. Opaque fallbacks are provided.
+
+
+The whole-card glass change was reverted at the user's request. The original
+sugarcane illustration is restored; only its text overlay retains frosted glass.
+
+
+The sugarcane text-overlay glass revision was also reverted at the user's
+request. The entire illustration card and its text panel use their original styling.
+
+
+### Color-preserving sugarcane glass - 12 October 2026
+
+Keep the illustration's original opaque landscape, sun, and cane colors. Add
+a subtle reflection layer and soft glass highlights instead of fading the artwork.
+The text panel retains its white appearance and existing blue/navy/slate text,
+with slight translucency and 12px backdrop blur. Provide an opaque fallback.
+
+
+### Responsive HD hero background - 12 October 2026
+
+Use the original agricultural photo in device-specific crops: 3840x2160 desktop,
+2048x1536 tablet, and 1200x1600 portrait mobile. Use native picture sources,
+object-fit cover, and responsive object positions. Keep existing overlays/colors.
+The phone hero expands with its content and preserves space for its bottom links.
+
+
+The Start with KisanSetu action specifically uses blue-tinted translucent glass,
+white text, 10px blur, and a soft blue shadow. It remains borderless and uses a
+solid primary-blue fallback without backdrop-filter support.
+
+
+The Start with KisanSetu glass tint now uses primary blue (#2563EB) throughout,
+without cyan, with 75–92% tint opacity and white text.
+
+
+The Start with KisanSetu blue-glass selector must override the shared landing
+clear-glass selector in default, hover, and fallback states.
+
+
+The blue Start with KisanSetu action now adds a soft reflective gradient and
+inset highlights over its saturated blue tint, with 14px blur. Preserve the
+blue color and white labels; do not add a border.
+
+
+The Start with KisanSetu glass button now uses a more transparent 65–75%
+primary-blue tint, subtle reflections, and 8px blur. White labels remain.
+
+
+The Start with KisanSetu button follows the latest smooth-pill reference in blue:
+a uniform 72% primary-blue glass fill, 12px blur, white text, more arrow spacing,
+and a faint shadow. No borders, inset rims, or glossy highlight gradients.
+
+
+The latest Start with KisanSetu reference uses translucent light-blue glass,
+22px rounded corners, 16px blur, sculpted inset highlights, and a soft blue shadow.
+White text and the existing arrow remain.
+
+
+The latest light-blue sculpted-glass button revision was reverted at the user's
+request. Start with KisanSetu returns to its preceding primary-blue glass pill.
+
+
+### Registration refresh - 12 October 2026
+The registration page uses a pale blue/slate canvas, rounded farm-photo panel with a primary-blue overlay, and a bordered white form card. Slate text and input borders replace warm brown neutrals on this page. Retain blue actions, visible focus styles, loading/error states, and a stacked mobile layout. Reuse the bundled landing photograph; no dependencies or API changes.
+
+
+The registration header omits the About navigation link at the user's request.
+
+
+Login reuses the registration page's photo panel, pale blue canvas, white card, slate form controls, responsive layout and blue actions. Both authentication headers omit About. Login retains its own copy and authentication behavior.
+
+
+On desktop, login/register photo and form panels use equal grid columns and matching stretched heights (680px minimum) and 28px corners. Form content remains vertically centered. Stacked layouts use natural form height.
+
+
+The registration header also omits Log in; the existing Sign in instead link remains within the form.
+
+
+Registration hides the public header and fills the viewport. Its weather logo uses primary blue on a white tile; login retains its existing header/logo.
+
+
+Login now shares registration's header-free, full-viewport layout and blue-on-white weather logo. This supersedes the preceding login header/logo exception.
+
+
+Both authentication pages display a shared top-left KisanSetu home link with a white droplet in a blue tile and blue wordmark. Reserve top spacing for the logo without restoring the public header. Keep keyboard focus visible.
+
+
+### Authentication redesign - 12 October 2026
+Login/register now use a joined two-column card with equal panel dimensions: white form left and blue-overlaid farm photo right. The top-left home logo remains and public headers stay hidden. Use lighter borders, compact typography, 12px form-control corners, and shared styling. On tablet/mobile the form comes first and photo follows. This supersedes the previous separated photo-left/form-right layout.
+
+
+The top-left login/register home logo now uses a white droplet and white KisanSetu wordmark on a primary-blue rounded background for contrast against the light page.
+
+
+The latest white-wordmark/blue-background logo change was reverted. Authentication pages again use the blue KisanSetu wordmark beside a white droplet in a blue tile.
+
+
+### Dashboard overview refresh - 12 October 2026
+Scope the new overview styling to /dashboard. Use navy (#0F172A) navigation, primary-blue active links, a pale-blue overview banner, white rounded cards, slate labels, and visible blue focus rings. Weather metrics use four desktop columns, two on smaller screens, and one on narrow phones. The temperature/humidity chart spans the chart grid; rain/wind share a row on desktop and stack on mobile. Farm details and recommendation use equal desktop columns. Keep the bundled data explicitly labeled Simulated Weather Data.
+
+
+The dashboard overview banner (kicker, title, description and icon badge) is removed at the user's request. The farm-selector label retains a compact simulated-weather disclosure.
+
+
+### Workspace palette alignment - 12 October 2026
+All authenticated pages now share the dashboard's navy sidebar, white surfaces, primary-blue accents, light-slate form controls and slate text. Applies to My Farms, Add Farm, farm details, Weather, Recommendation, History and Profile. Profile/advisor decorative warm colors use blue/slate; semantic success, warning and error states remain distinct. Page behavior and API contracts are unchanged.
+
+
+The workspace sidebar now uses a light-blue gradient (#EFF6FF to #DBEAFE), slate/navy labels, pale-blue hover fills and bright-blue active links with white labels, per user request. Promo/user/close controls match the light theme. This supersedes the navy-sidebar direction for the workspace.
+
+
+All brand symbols follow the supplied outlined circular droplet reference: a 44px circle, thin outline and 24px droplet with transparent fill. Use white on photo backgrounds and blue on light surfaces for contrast. Authentication story marks now use the same droplet symbol.
+
+
+### Dark appearance
+Dark mode uses #0B1220 backgrounds, #111C2E surfaces, #334155 borders, #E2E8F0 text and blue accents. Users can toggle it with the moon/sun control; the choice persists locally and defaults to the device appearance when unset. Preserve semantic status colors and map tile imagery. Browser contrast verification remains pending.
+
+
+### Dark field and surface consistency - 12 October 2026
+
+Theme complete authentication field wrappers, including icons and password controls, with #0B1526 fills and #475569 borders; nested inputs remain transparent. Replace pale authentication gradients in dark mode and use #334155 card borders. Links use #60A5FA with translucent blue focus rings. Nested workspace surfaces/table headers use dark fills; primary actions retain blue/white labels and disclaimers retain warning colors. Browser visual verification remains pending.

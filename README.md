@@ -1013,3 +1013,7 @@ live or observed weather.
 
 The separate Weather and Recommendation pages and the backend API retain their
 documented live-weather workflow.
+
+## Microservices copy
+
+A separate copy is available in [microservices/](microservices/README.md), with an API gateway and independently running identity, farm, weather, and recommendation services. See that folder for setup and verification results.

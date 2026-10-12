@@ -889,3 +889,30 @@ does not fabricate fallback weather.
 
 The Weather and Recommendation pages continue to use the secured backend API for
 their normal live-weather workflow.
+
+FarmForm now awaits save requests, displays failures and validates nonblank coordinate ranges. FarmDetails exits loading on failed requests, ignores responses after unmount, displays errors and prevents duplicate deletion. Weather selection is disabled during requests and missing measurements display Not available. Logout clears state in finally. No dependencies added.
+
+
+The dashboard sidebar promotional card was removed at the user's request; navigation and account controls remain.
+
+The sidebar ends with a white account panel containing the signed-in user's initials/name, Farmer account label, profile link and rounded logout button. Frontend lint/build pass; browser visual verification pending.
+
+The sidebar account panel and logout button were subsequently removed at the user's request. The header account display remains. Frontend lint/build pass.
+
+The header account control opens AccountPanel, a native modal dialog styled after the supplied Google account reference. It displays the current user's initials/name/email, links to Profile, and signs out through AuthContext. The dialog supports Escape, outside-click dismissal and native focus handling. Lint/build pass; browser verification pending. No dependencies added.
+
+The notification bell opens NotificationPanel with accessible native dialog behavior and a Profile preferences link. It shows an explicit empty state because no notification feed exists; the hardcoded 3 badge was removed. Lint/build pass; browser verification pending.
+
+The Profile page introductory Account settings/My Profile heading and description were removed at the user's request. Profile forms and account controls remain.
+
+ThemeToggle controls document-level light/dark appearance. Startup uses the saved irrigation_theme value or device preference, before React renders. The dashboard and public headers expose the toggle; authentication pages use a fixed toggle. Local storage failure falls back to session-only changes. Dark CSS covers workspace surfaces, forms, tables, charts and dialogs; map imagery retains its original colors. No dependencies added. Lint/build pass; browser visual verification pending.
+
+The landing-page header no longer displays the theme toggle. Theme controls remain on other public/authentication pages and in the dashboard.
+
+The public header is hidden on the landing route (/). Other public-page headers and the authenticated workspace header remain.
+
+The landing header is visible again and overlays the hero with a transparent background in both appearances. Its content remains; the landing theme toggle stays hidden.
+
+### Dark appearance consistency - 12 October 2026
+
+Shared login/register field wrappers, icons and password controls use a single dark surface with transparent nested inputs. Authentication gradients and borders now use navy colors; links and focus rings use readable blue colors. Workspace table headers, advisor results/disclaimers, nested borders and icon surfaces follow dark appearance. Primary advisor actions retain blue/white styling. No dependencies or authentication behavior changed. Frontend lint/build and all 13 existing backend tests pass; both development servers started, authentication routes/CSS returned HTTP 200 and backend health confirmed a connected database. No frontend test script is configured. Browser visual/mobile/interaction verification remains pending because no browser surface is connected.

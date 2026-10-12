@@ -12,7 +12,7 @@ export default function RainProbabilityChart({ data = [], periodLabel, loading, 
             <XAxis dataKey="date" tickLine={false} axisLine={false} />
             <YAxis domain={[0, 100]} unit="%" tickLine={false} axisLine={false} />
             <Tooltip formatter={(value) => [`${value}%`, 'Rain probability']} />
-            <Bar dataKey="rainProbability" name="Rain probability" fill="#287271" radius={[8, 8, 0, 0]} maxBarSize={48} />
+            <Bar dataKey="rainProbability" name="Rain probability" fill="#2563eb" radius={[8, 8, 0, 0]} maxBarSize={48} />
           </BarChart>
         </ResponsiveContainer>
       </div>

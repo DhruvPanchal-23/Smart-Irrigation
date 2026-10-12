@@ -1699,3 +1699,6 @@ Responsive User Interface
 ```
 
 All critical workflows must pass before the project is considered ready for final demonstration or college submission.
+
+Error-check verification (12 October 2026): frontend npm.cmd run lint and npm.cmd run build pass. Backend npm.cmd test passes 13 tests, including mocked provider requests, incomplete weather data and forecast rain probability. Both health routes return HTTP 200 with database connected. Frontend HTTP delivery passes. Browser auth/farm failure-path interaction checks remain pending; no frontend test script is configured.
+

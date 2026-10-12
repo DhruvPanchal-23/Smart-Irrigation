@@ -17,7 +17,7 @@ app.use(cors({ origin: normalizeOrigin(process.env.FRONTEND_URL || 'http://local
 app.use(express.json({ limit: '20kb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1', requireDatabase);
-app.get('/api/v1/health', (_req, res) => res.json({
+app.get(['/health', '/api/v1/health'], (_req, res) => res.json({
   success: true,
   message: 'Service is healthy',
   data: { status: 'ok', database: getDatabaseStatus() },

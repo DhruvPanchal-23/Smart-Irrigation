@@ -1275,3 +1275,9 @@ Secure
 Suitable for demonstration
 
 Consistent with the project documentation
+### Overview UI refresh - 12 October 2026
+The implemented overview retains the bundled synthetic dataset, farm selector, four-second timeline playback and stored recommendation matching. Its badge now explicitly reads Simulated Weather Data. A pale-blue overview banner, white metric cards, a responsive chart grid and navy sidebar replace the prior warm styling on /dashboard only. No API or dataset contracts changed. Frontend lint/build and all 11 backend tests pass; authenticated browser/mobile workflow verification remains pending.
+
+
+The overview banner is removed. The dashboard starts with farm selection/timeline controls; simulated-weather disclosure now appears within the selector label.
+

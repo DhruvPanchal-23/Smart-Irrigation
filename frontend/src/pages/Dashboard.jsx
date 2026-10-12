@@ -116,18 +116,9 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard simulation-dashboard">
-      <section className="dashboard-welcome">
-        <div>
-          <span className="dashboard-kicker">Historical weather</span>
-          <h1>KisanSetu Dashboard</h1>
-          <p>Explore five years of farm weather history and stored irrigation advice.</p>
-        </div>
-        <span className="demo-badge"><FiCloud /> Historical Weather Data</span>
-      </section>
-
       <section className="dashboard-toolbar simulation-toolbar card" aria-label="Simulation settings">
         <label className="farm-selector">
-          <span>Selected Farm</span>
+          <span>Selected Farm · Simulated weather data</span>
           <select value={selectedFarmId} onChange={(event) => setSelectedFarmId(event.target.value)}>
             {farms.map((farm) => <option key={farm._id} value={farm._id}>{farm.farmName}</option>)}
           </select>
@@ -151,9 +142,11 @@ export default function Dashboard() {
           <Metric icon={<FiCalendar />} color="amber" label="Record Date" value={formatDate(currentWeather.recordedAt)} />
         </section>
 
-        <TemperatureHumidityChart data={weatherTrend} periodLabel="7-Day" />
-        <RainProbabilityChart data={weatherTrend} periodLabel="7-Day" />
-        <WindSpeedChart data={weatherTrend} periodLabel="7-Day" />
+        <section className="dashboard-chart-grid" aria-label="Seven-day weather trends">
+          <TemperatureHumidityChart data={weatherTrend} periodLabel="7-Day" />
+          <RainProbabilityChart data={weatherTrend} periodLabel="7-Day" />
+          <WindSpeedChart data={weatherTrend} periodLabel="7-Day" />
+        </section>
 
         <div className="dashboard-lower-grid simulation-details">
           <FarmInformation farm={selectedFarm} />

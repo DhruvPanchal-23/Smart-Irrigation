@@ -5828,3 +5828,5 @@ MongoDB
 Standard JSON Response
 
 The backend must remain secure, modular, consistent, testable, and suitable for college submission.
+Weather integration requests current conditions and the nearest three-hour forecast concurrently. Rain probability is read from forecast list[0].pop; incomplete numeric data fails safely. Mocked node:test coverage is in backend/test/weather.test.js. /health is supported alongside /api/v1/health.
+

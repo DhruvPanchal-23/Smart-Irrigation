@@ -105,7 +105,6 @@ export default function Profile() {
   const initials = (profile?.name || 'Farmer').split(' ').slice(0, 2).map((part) => part[0]).join('').toUpperCase();
 
   return <div className="profile-page">
-    <header className="profile-title-row"><div><span className="profile-eyebrow">Account settings</span><h1>My Profile</h1><p>Manage your personal information, preferences and account settings.</p></div></header>
     {pageError && <div className="profile-alert error" role="alert"><FiAlertTriangle /><span>{pageError}</span><button onClick={() => setPageError('')} aria-label="Dismiss error"><FiX /></button></div>}
     {notice && <div className="profile-alert success" role="status"><FiCheckCircle /><span>{notice}</span><button onClick={() => setNotice('')} aria-label="Dismiss message"><FiX /></button></div>}
 

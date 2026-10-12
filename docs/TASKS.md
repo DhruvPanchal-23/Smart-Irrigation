@@ -3100,3 +3100,233 @@ Suitable for college submission
 - [x] Restore normalized frontend-origin handling and database-aware health responses.
 - [x] Verify local MongoDB connectivity and the login invalid-credentials response.
 - [x] Pass backend tests, frontend lint, and the frontend production build.
+
+## Microservices Clone - 2026-10-06
+
+- [x] Create the separate clone, four domain processes and compatible gateway.
+- [x] Pass 16 tests, separate-process MongoDB integration, frontend lint/build and frontend startup.
+- [x] Document shared database/source, commands, inherited limitations and unverified live/browser checks.
+
+## Sitemap and Robots Practical - 2026-10-11
+
+- [x] Create public sitemap from implemented `/` and `/about` content routes; exclude authentication and private routes.
+- [x] Verify XML parsing, local HTTP 200 responses, production artifact copies, frontend build and lint.
+- [!] Publish and verify both files: the supplied Vercel domain returns `404 DEPLOYMENT_NOT_FOUND`; current deployment URL is needed.
+- [ ] Capture six requested screenshots and attach them to the practical journal.
+
+## Reference-inspired Landing Page - 2026-10-12
+
+- [-] Implement the photograph hero, overlay navigation, blue primary actions, feature cards and onboarding section. Source, local HTTP delivery, lint and production build verified; desktop/mobile visual review remains pending because no browser surface is connected.
+- [x] Remove the landing page's hardcoded sample weather reading.
+- [x] Bundle the agricultural hero photograph locally and document its source.
+- [x] Run frontend lint/build and the existing backend suite (11 tests passed); both development servers started.
+- [ ] Visually verify desktop/mobile layout, keyboard navigation and account/section links in a browser.
+
+## About content on the landing page - 2026-10-12
+
+- [-] Replace the landing feature/process/note sections and footer with the existing sugarcane About guide. Source, lint and production build pass; visual browser checks remain pending.
+- [-] Make About links scroll to `/#about`, remove the standalone page and redirect legacy `/about` visits. Update the sitemap to list only `/`; browser interaction verification remains pending.
+
+- [x] Remove the Home/About section navigation from the landing header as requested; frontend lint and build pass.
+
+## About palette alignment - 2026-10-12
+
+- [-] Match the landing page palette in About: blue buttons/icons, navy headings and panels, white cards, slate backgrounds/text and borders. Lint and production build pass; connected-browser visual review remains pending.
+
+## App-wide palette alignment - 2026-10-12
+
+- [-] Apply the landing palette to shared controls, dashboard/sidebar, profile, advisor, login/register and analytics accents. Blue primary actions, navy navigation, white surfaces and slate text replace earth-tone styling. Lint and build pass; browser visual checks remain pending.
+- [x] Synchronize UI_GUIDELINES.md with the blue/navy/white/slate palette.
+
+## App-wide palette rollback - 2026-10-12
+
+- [-] Revert the app-wide palette change at the user's request. Restore the earlier earth-tone shared/auth/dashboard/profile/advisor/chart styling while retaining the landing and embedded About styling. Lint/build pass; visual browser review remains pending. This supersedes the app-wide palette alignment entry.
+
+## Green-to-blue accents - 2026-10-12
+
+- [-] Replace green/teal decorative UI accents and their tints with blue across buttons, links, navigation, profile, advisor, authentication and charts. Preserve existing brown surfaces and neutral colors. Frontend lint/build pass; browser visual checks remain pending.
+
+## Brighter blue preference - 2026-10-12
+
+- [-] Replace dark blue decorative accents, panel gradients and hover colors with primary blue (#2563EB), per user preference. Lint/build pass; browser visual verification remains pending.
+
+## Landing glassmorphism - 2026-10-12
+
+- [-] Add frosted glass to the landing navigation, secondary controls and About cards, with translucent surfaces, blue background glows, blur, borders and shadows. Include solid-surface fallbacks for browsers without backdrop-filter. Lint/build pass; browser visual review remains pending.
+
+- [x] Remove the Irrigation strategy section and crop-stage moisture cards from the landing About guide as requested; lint and production build pass.
+
+## Glass styling rollback - 2026-10-12
+
+- [x] Remove the recently added landing/About glassmorphism block and restore preceding solid-surface styling. Lint/build pass. The earlier Irrigation strategy removal remains in place.
+
+- [x] Change the landing About account-creation banner from navy to light blue (#DBEAFE), with readable dark text and the existing blue button. Frontend lint/build pass.
+
+- [-] Add glassmorphism only to landing hero buttons and the header Sign up button: translucent backgrounds, blur, light borders and shadows with opaque fallbacks. Lint/build pass; browser visual review remains pending.
+
+- [-] Refine landing buttons to the user's sculpted clear-glass reference: stronger blur, transparent surfaces, raised rim highlights and inset shadows. Lint/build pass; browser visual review remains pending.
+
+- [-] Apply reference-inspired clear glass to About principle cards, irrigation-method cards, practice cards, crop illustration overlay and account banner. Add light blue background glows and opaque fallbacks. Lint/build pass; browser visual review remains pending.
+
+- [x] Correct the About glass request: remove the About-content glass block and retain the existing clear-glass About KisanSetu hero button. Lint/build pass.
+
+- [-] Strengthen the About KisanSetu button glass effect with 28px blur, greater transparency, brighter rims and deeper inset shadows. Lint/build pass; browser visual verification pending.
+
+- [x] Revert the latest stronger About-button glass effect and restore the preceding clear-glass button styling. Lint/build pass.
+
+- [x] Remove the remaining landing button glass styling and restore solid blue/white buttons. Lint/build pass.
+
+- [-] Add a color-preserving glass finish to landing hero/header buttons: keep blue/white fills and label colors, with slight translucency, blur, rim highlights and shadows. Lint/build pass; browser visual review remains pending.
+
+- [-] Match the supplied sculpted-glass reference with raised rims, deeper inset shadows and 24px blur on landing buttons, retaining blue and white tinted fills. Lint/build pass; browser visual comparison remains pending.
+
+- [-] Refine landing button glass to thicker rounded rims, layered inset borders, 26px blur and more translucent blue/white tinted cores. Lint/build pass; browser visual comparison remains pending.
+
+- [-] Increase landing button transparency to 48% tinted fills, sharpen glass highlights and reduce blur to reveal more background detail. Retain blue/white tints and add a primary-label shadow. Lint/build pass; browser visual review pending.
+
+- [x] Remove the landing-button glass effect and restore original solid blue/white buttons at the user's request. Lint/build pass.
+
+## Landing liquid-glass buttons - 2026-10-12
+
+[-] Apply the reference-inspired silver glass finish to all five requested landing actions. CSS implemented; lint/build pass and Vite serves the landing page and updated CSS. Desktop/mobile visual and keyboard verification remains pending.
+
+
+[-] Strengthen the five landing glass buttons with transparent cores and sharper reflective rims. Lint/build pass; browser visual verification remains pending.
+
+
+[-] Remove borders and inset rim highlights from the five landing glass buttons. Lint/build pass; visual browser review remains pending.
+
+
+[-] Remove the apparent glass rim and further reduce landing-button fill opacity. Lint/build pass; browser visual review remains pending.
+
+
+[-] Apply borderless glassmorphism to the landing Explore down-arrow circle. Lint/build pass; browser visual review remains pending.
+
+
+[-] Increase Explore arrow-circle transparency with lighter fill, blur, and shadow. Lint/build pass; browser visual review remains pending.
+
+
+[-] Refine the Explore button with a clearer glass core and localized reflection. Lint/build pass; visual review remains pending.
+
+
+[-] Apply frosted glass to the sugarcane illustration text overlay. Lint/build pass; browser visual review remains pending.
+
+
+[-] Extend glassmorphism to the entire sugarcane illustration card. Lint/build pass; browser visual verification remains pending.
+
+
+[x] Revert the latest whole-card glass styling, preserving the prior frosted text overlay. Lint/build pass.
+
+
+[x] Revert the sugarcane text-overlay glass revision and restore its original styling. Lint/build pass.
+
+
+[-] Apply color-preserving glass reflections to the sugarcane card and a subtly frosted white text panel. Original artwork/text colors retained; lint/build pass. Browser visual review remains pending.
+
+
+[-] Upgrade the landing background to bundled 4K desktop, tablet, and portrait-mobile crops; add native picture selection and responsive hero layout. Image dimensions, lint/build, and local HTTP delivery pass. Browser visual checks remain pending.
+
+
+[x] Remove the requested crop education, principles, farming timeline, irrigation-method cards, and field-practice checklist from AboutSection. Remove unused data/icons and the obsolete anchor link. Lint/build pass.
+
+
+[-] Apply blue glass to the Start with KisanSetu button only. Lint/build pass; visual review remains pending.
+
+
+[-] Refine Start with KisanSetu to a consistent primary-blue glass tint. Lint/build pass; visual review remains pending.
+
+
+[-] Fix CSS specificity so the Start with KisanSetu blue-glass fill wins over the shared clear-glass rule, including hover and fallback. Lint/build pass; browser visual verification remains pending.
+
+
+[-] Strengthen the Start with KisanSetu glass effect while preserving its blue fill and white text. Lint/build pass; visual review remains pending.
+
+
+[-] Increase blue-glass button transparency while retaining its blue tint and white text. Lint/build pass; browser visual verification remains pending.
+
+
+[-] Match Start with KisanSetu to the smooth reference pill in blue; remove inset highlights and use a uniform translucent fill. Lint/build pass; visual review remains pending.
+
+
+[-] Style Start with KisanSetu using the latest light-blue sculpted-glass reference. Lint/build pass; browser visual review remains pending.
+
+
+[x] Revert the latest light-blue sculpted-glass button change. Previous primary-blue glass styling restored; lint/build pass.
+
+
+[x] Remove the landing About Farm with better context account banner and educational disclaimer at the user's request. Frontend lint/build pass.
+
+[-] Refresh registration colors and layout with a farm-photo panel and white account card. Frontend lint/build and registration HTTP delivery pass; 11 backend tests pass. Browser visual and manual registration checks remain pending.
+
+
+[x] Remove the About navigation link from registration only. Frontend lint and build pass.
+
+
+[-] Match login to the refreshed registration design using shared registration styles; omit About on login. Frontend lint/build and login HTTP delivery pass. Browser visual and manual sign-in verification remain pending.
+
+
+[-] Equalize photo and form panel dimensions on login/register desktop layouts. Lint/build pass; visual review pending.
+
+
+[x] Remove the header Log in link from registration. Frontend lint/build pass.
+
+
+[-] Hide the registration header and recolor its weather logo blue on white. Frontend lint/build pass; visual verification pending.
+
+
+[-] Match login to registration's hidden header and blue/white logo. Frontend lint/build pass; visual review pending.
+
+
+[-] Add the top-left KisanSetu home logo to login/register with reserved layout spacing. Frontend lint/build pass; visual review pending.
+
+
+[-] Redesign login/register as a joined form-left/photo-right card with shared dimensions and responsive form-first stacking. Frontend lint/build pass; visual and manual auth checks pending. No dependencies or API changes.
+
+
+[-] Change both authentication home logos to white on blue. Frontend lint/build pass; visual review pending.
+
+
+[x] Revert the latest authentication logo color change. Previous blue wordmark restored; frontend lint/build pass.
+
+
+[-] Refresh dashboard overview with navy sidebar, blue banner, white metric cards and responsive chart/details grids; explicitly label simulated weather. Lint/build and 11 backend tests pass; visual/manual authenticated verification pending. No dependencies added.
+
+
+[x] Remove dashboard overview banner and relocate simulated-data disclosure to the farm-selector label. Frontend lint/build pass.
+
+
+[-] Align farm, weather, recommendation, history and profile colors with the blue/slate dashboard. Shared workspace styling and form/profile/advisor overrides implemented; frontend lint/build pass. Visual/manual verification pending; no dependencies added.
+
+
+[-] Change the workspace menu/sidebar to light-blue shades with readable dark labels and blue active items. Lint/build pass; visual review pending.
+
+
+[-] Unify landing, authentication and sidebar brand symbols as outlined circular droplets. Lint/build pass; reference comparison pending.
+
+
+[-] Error-check fixes: farm save/detail/delete error handling, coordinate validation, weather fallbacks/request guard, logout cleanup, /health alias and real forecast rain probability. Lint/build and 13 backend tests pass; both servers run and health confirms database connected. Manual browser workflow verification pending.
+
+
+[x] Remove the dashboard sidebar promotional card at the user's request. Frontend lint and production build pass.
+
+[-] Style sidebar account panel after the supplied Google-style reference: initials avatar, user name, Farmer account label, profile link and rounded logout button. Frontend lint/build pass; browser visual verification pending.
+
+[x] Remove the sidebar account panel and its logout button at the user's request, superseding the preceding account-panel styling task. Unused handler/imports and panel styles removed; frontend lint/build pass.
+
+[-] Add a Google-style account popup to the top-right header account control, with signed-in name/email, profile link, sign-out loading state and native dialog keyboard/focus handling. Frontend lint/build pass; browser interaction verification pending.
+
+[-] Make the header notification bell functional and accessible with a labeled native dialog, Escape/outside-click dismissal, focus handling, a 44px target and preference link. Removed hardcoded unread count. Lint/build pass; browser keyboard verification pending.
+
+[x] Remove the Profile page Account settings/My Profile heading and introductory description at the user's request. Frontend lint/build pass.
+
+[-] Add persistent dark mode with accessible moon/sun controls in dashboard/public headers and authentication pages. Device preference supplies the initial theme; localStorage preserves explicit choices. Dark surfaces/forms/dialogs/charts implemented; lint/build pass. Browser contrast/mobile verification pending. No dependencies added.
+
+[x] Remove the light/dark theme toggle from the landing-page header at the user's request. Other theme controls remain. Frontend lint/build pass.
+
+[x] Hide the landing-page header at the user's request. Frontend lint/build pass.
+
+[x] Keep the restored landing header transparent, including when dark mode was selected elsewhere. Removed header surface/border/shadow/blur; other content preserved. Frontend lint/build pass.
+
+## Dark appearance consistency - 12 October 2026
+
+- [-] Correct shared authentication field backgrounds, page gradient, card borders, links/focus and remaining workspace surfaces. CSS implemented; lint/build, all 13 backend tests, dev-server startup and authentication-route HTTP checks pass. Database health reports connected. Browser verification is pending; no browser surface is connected.

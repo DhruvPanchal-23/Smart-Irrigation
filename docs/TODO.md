@@ -3549,3 +3549,221 @@ all describe and implement the same system.
 - [x] Restore the app-level database middleware required by login and other database-backed routes.
 - [x] Verify the local health and invalid-login API responses.
 - [ ] Redeploy the backend and verify login with a registered production account.
+
+## Microservices Clone - 2026-10-06
+
+- [x] Verify service startup, gateway routing, copied frontend build/lint and inherited backend tests.
+- [ ] Configure clone secrets and verify a real OpenWeather request.
+- [ ] Manually verify the copied browser workflow and map selection.
+
+## Sitemap and Robots Practical - 2026-10-11
+
+- [x] Add and locally verify `frontend/public/sitemap.xml` and `frontend/public/robots.txt`; build and lint pass.
+- [!] Confirm the current production domain, update both files if needed, deploy, and verify published file contents. The supplied domain returns Vercel `404 DEPLOYMENT_NOT_FOUND`.
+- [ ] Capture genuine terminal, XML editor, robots generator, robots editor, published XML, and published robots screenshots for the journal.
+
+## Landing Page - 2026-10-12
+
+- [-] Reference-inspired landing page implemented; frontend lint/build, local page/image HTTP delivery and all 11 existing backend tests pass.
+- [ ] Complete desktop/mobile browser visual and interaction checks. No browser surface was connected during implementation.
+- [ ] Add frontend interaction tests when the planned Vitest/React Testing Library setup is configured; no frontend test script currently exists.
+
+## About section consolidation - 2026-10-12
+
+- [-] Move the full sugarcane guide to the landing page; remove superseded landing sections/footer and the standalone About page. Lint/build verified.
+- [ ] Verify About anchor scrolling from the landing/login/register pages and legacy `/about` redirection in a connected browser.
+
+- [x] Remove landing-header Home/About links; lint/build verified.
+
+- [ ] Visually verify the About section's updated landing-page palette in a connected browser (lint/build pass).
+
+- [ ] Visually verify the app-wide palette on mobile and desktop, including login/register, dashboard, advisor, profile and chart legends. Source lint/build pass.
+
+The app-wide palette alignment was reverted on 12 October 2026 at the user's
+request. The previous shared UI/chart colors are restored; landing/About styling
+is retained. Lint and production build pass. Earlier app-wide visual-review tasks
+are superseded by this rollback.
+
+- [ ] Visually review the green-to-blue accent update across app pages; lint/build pass.
+
+- [ ] Visually review the brighter primary-blue styling; dark blue accent/hover shades were removed and lint/build pass.
+
+- [ ] Visually review landing/About glassmorphism on desktop/mobile and in browsers without backdrop-filter; lint/build pass.
+
+- [x] Remove the requested Irrigation strategy content from the landing page; lint/build pass.
+
+- [x] Revert the added landing/About glass styling; lint/build pass. Glassmorphism visual-review tasks above are superseded.
+
+- [x] Replace the dark account-creation banner with light blue; lint/build pass.
+
+- [ ] Visually verify the landing button-only glass effect; lint/build pass.
+
+- [ ] Visually compare the clear-glass landing buttons with the supplied reference; lint/build pass.
+
+- [ ] Visually verify the About clear-glass cards and banner on desktop/mobile; lint/build pass.
+
+- [x] Remove glass styling from About content; retain it on the About KisanSetu button. Lint/build pass. About-card glass review tasks above are superseded.
+
+- [ ] Visually review the stronger glass effect on the About KisanSetu button; lint/build pass.
+
+- [x] Undo the stronger About-button effect. The earlier glass styling is restored; lint/build pass. The stronger-effect visual-review task is superseded.
+
+- [x] Restore solid landing buttons; lint/build pass. Earlier glass-button visual-review tasks are superseded.
+
+- [ ] Visually verify color-preserving glass landing buttons; lint/build pass.
+
+- [ ] Visually compare the blue/white tinted sculpted-glass buttons to the latest reference; lint/build pass.
+
+- [ ] Visually compare the thicker-rim tinted landing glass buttons with the latest reference; lint/build pass.
+
+- [ ] Visually verify the more transparent tinted-glass buttons and label contrast; lint/build pass.
+
+- [x] Restore original landing buttons without glassmorphism; lint/build pass. Tinted-glass visual-review tasks above are superseded.
+
+## Landing liquid-glass buttons - 2026-10-12
+
+- [ ] Visually verify all five silver liquid-glass actions on desktop/mobile, including hover, keyboard focus, reduced motion, and fallback rendering. Lint/build and local HTTP delivery pass; no frontend test script is configured.
+
+
+- [ ] Visually check the stronger transparent-glass revision and hero/header white-label contrast; lint/build pass.
+
+
+- [ ] Visually verify the borderless landing glass buttons; lint/build pass.
+
+
+- [ ] Visually verify the rim-free, more transparent landing buttons against the supplied screenshot; lint/build pass.
+
+
+- [ ] Visually verify the glass Explore arrow circle; lint/build pass.
+
+
+- [ ] Visually verify the more transparent Explore arrow circle; lint/build pass.
+
+
+- [ ] Visually verify the clear-glass Explore button and reflective sheen; lint/build pass.
+
+
+- [ ] Visually verify sugarcane overlay glass transparency and text contrast at desktop/mobile sizes; lint/build pass.
+
+
+- [ ] Visually verify the complete glass sugarcane illustration card on desktop/mobile; lint/build pass.
+
+
+The whole-card glass review task is superseded by the user's rollback. The
+original illustration is restored and the frosted overlay remains; lint/build pass.
+
+
+Sugarcane overlay glass-review tasks are superseded by rollback. The original
+card and text-panel styling are restored; lint/build pass.
+
+
+- [ ] Visually verify the color-preserving sugarcane glass finish on desktop/mobile; lint/build pass.
+
+
+- [ ] Visually verify the HD hero on desktop, tablet, portrait phones, and short landscape screens, including image crop and text/control spacing. Dimensions, lint/build, and local HTTP delivery pass.
+
+
+- [ ] Visually review spacing in the shortened landing About section; lint/build pass.
+
+
+- [ ] Visually verify the blue-glass Start with KisanSetu action; lint/build pass.
+
+
+- [ ] Visually verify the primary-blue glass tint; lint/build pass.
+
+
+- [ ] Verify the corrected blue-glass button fill and white-label contrast in the browser; lint/build pass.
+
+
+- [ ] Visually verify the color-preserving blue-glass button reflections; lint/build pass.
+
+
+- [ ] Verify transparent-blue button color and white-text contrast visually; lint/build pass.
+
+
+- [ ] Compare the smooth blue-glass pill with the supplied reference in the browser; lint/build pass.
+
+
+- [ ] Compare the light-blue sculpted-glass button with the latest reference; lint/build pass.
+
+
+The latest light-blue sculpted-glass comparison task is superseded by rollback.
+Previous primary-blue button styling is restored; lint/build pass.
+
+
+The landing About account banner/disclaimer removal is verified by lint/build; no further implementation work remains for this text removal.
+
+- [ ] Visually verify the refreshed registration page on desktop/mobile and manually check registration/password visibility. Lint/build and HTTP delivery pass; no frontend test script is configured.
+
+
+Registration About-link removal is implemented; frontend lint/build pass.
+
+
+- [ ] Visually verify the matching login design on desktop/mobile and manually check sign-in and password visibility. Frontend lint/build and HTTP delivery pass.
+
+
+- [ ] Visually confirm equal desktop authentication panel dimensions and natural mobile form height.
+
+
+Registration header Log in removal is implemented; lint/build pass.
+
+
+- [ ] Visually check the header-free registration layout and blue/white weather logo.
+
+
+- [ ] Visually verify login's header-free layout and blue-on-white logo.
+
+
+- [ ] Visually verify the top-left authentication logo and spacing on desktop/mobile.
+
+
+- [ ] Visually review the new joined authentication card on desktop/mobile and check sign-in/registration and focus navigation.
+
+
+- [ ] Visually verify the white authentication logo on its blue background.
+
+
+The white authentication logo review is superseded by rollback to the preceding blue wordmark.
+
+
+- [ ] Visually verify the refreshed dashboard on desktop/mobile, drawer navigation, farm switching, timeline playback and chart resizing in an authenticated session.
+
+
+Dashboard overview banner removal is implemented; lint/build pass.
+
+
+- [ ] Visually verify the blue/slate workspace colors across farms, add farm, weather, recommendation, history and profile, including forms and mobile navigation.
+
+
+- [ ] Visually verify the light-blue sidebar and mobile drawer contrast.
+
+
+- [ ] Visually compare the circular droplet brand symbols to the supplied reference across pages.
+
+
+- [ ] Manually verify farm save/load/delete failure states, coordinate errors and authenticated weather workflow in the browser. Existing frontend package has no automated test script.
+
+
+Sidebar promotional card removal is implemented and verified by frontend lint/build.
+
+[ ] Visually verify the sidebar account panel and logout button on desktop and mobile.
+
+The sidebar account-panel visual review is superseded by its removal at the user's request. Frontend lint/build pass.
+
+[ ] Verify header account popup opening, outside-click/Escape dismissal, focus return, profile navigation and sign out on desktop/mobile. No frontend test script is configured.
+
+[ ] Verify notification dialog keyboard navigation, dismissal and mobile layout. Real notification delivery is not connected.
+
+Profile introductory heading removal is implemented; frontend lint/build pass.
+
+[ ] Visually verify dark-mode contrast, charts, login/register forms and mobile headers; verify toggle persistence after refresh.
+
+Landing-page theme-toggle removal is implemented; frontend lint/build pass.
+
+Landing-page header hiding is implemented; frontend lint/build pass.
+
+Transparent landing header is implemented; frontend lint/build pass.
+
+## Dark appearance consistency - 12 October 2026
+
+- [ ] Visually verify corrected login/register fields, icons, password toggle, focus, autofill and theme persistence on desktop/mobile; review workspace tables, advisor results and profile controls in dark and light mode. CSS fixes pass lint/build and local HTTP delivery; 13 backend tests pass. No frontend test script or connected browser surface is available.

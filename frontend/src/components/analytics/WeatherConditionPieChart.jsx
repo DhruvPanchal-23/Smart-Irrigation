@@ -1,7 +1,7 @@
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import AnalyticsCard from './AnalyticsCard.jsx';
 
-const COLORS = ['#287f78', '#786b60', '#23a36f', '#c58b3a', '#4f7f95'];
+const COLORS = ['#0ea5e9', '#786b60', '#0ea5e9', '#c58b3a', '#4f7f95'];
 
 export default function WeatherConditionPieChart({ data = [], periodLabel, loading, error, onRetry }) {
   return (

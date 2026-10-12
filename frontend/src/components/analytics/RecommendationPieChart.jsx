@@ -1,7 +1,7 @@
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import AnalyticsCard from './AnalyticsCard.jsx';
 
-const COLORS = ['#287271', '#23a36f', '#c58b3a', '#795548', '#786b60'];
+const COLORS = ['#2563eb', '#0ea5e9', '#c58b3a', '#795548', '#786b60'];
 
 export default function RecommendationPieChart({ data = [], periodLabel, loading, error, onRetry }) {
   const total = data.reduce((sum, item) => sum + item.value, 0);
