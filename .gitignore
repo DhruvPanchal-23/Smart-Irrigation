@@ -1,87 +1,112 @@
-# ===================================
-# Dependencies
-# ===================================
+# ==========================================
+# SMART IRRIGATION SYSTEM - GITIGNORE
+# ==========================================
+
+# 1. DOCUMENTATION
+# ==========================================
+docs/
+*.md
+**/*.md
+
+# 2. AI AGENT FILES
+# ==========================================
+.agents/
+AGENTS.md
+
+# 3. GIT AND EDITOR CONFIGURATION
+# ==========================================
+.gitattributes
+.editorconfig
+.prettierignore
+.prettierrc
+.prettierrc.json
+
+# 4. DOCKER
+# ==========================================
+docker-compose.yml
+docker-compose.yaml
+docker-compose.override.yml
+
+# 5. DEPENDENCIES
+# ==========================================
 node_modules/
 **/node_modules/
 
-# ===================================
-# Environment variables
-# ===================================
+# 6. ENVIRONMENT VARIABLES AND SECRETS
+# ==========================================
 .env
-.env.local
-.env.development
-.env.production
-.env.test
-
+.env.*
 **/.env
-**/.env.local
-**/.env.development
-**/.env.production
-**/.env.test
+**/.env.*
 
-# Keep example environment files
-!.env.example
-!**/.env.example
-
-# ===================================
-# React / Vite build
-# ===================================
-dist/
-build/
-**/dist/
-**/build/
-
-# ===================================
-# Logs
-# ===================================
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# ===================================
-# Operating System
-# ===================================
-.DS_Store
-Thumbs.db
-
-# ===================================
-# VS Code / IDE
-# ===================================
-.idea/
-
-# ===================================
-# Testing
-# ===================================
-coverage/
-
-# ===================================
-# Database files
-# ===================================
-*.sqlite
-*.sqlite3
-*.db
-
-# ===================================
-# Secrets / Certificates
-# ===================================
 *.pem
 *.key
 *.p12
-*.pfxre
-# ===================================
-# Project-specific ignored files
-# ===================================
+*.pfx
+secrets/
+credentials.json
+service-account*.json
 
-agent.md
-agent.m
+# 7. FRONTEND AND BACKEND BUILD OUTPUTS
+# ==========================================
+dist/
+build/
+out/
+.next/
+.vite/
+.cache/
 
-LICENSE
+# 8. LOG FILES
+# ==========================================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-seed.md
-seed.md
+# 9. TEST OUTPUTS AND COVERAGE
+# ==========================================
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
 
-docker-compose.yml
-docker-compose.yaml
-compose.yml
-compose.yaml
+# 10. DEPLOYMENT GENERATED FILES
+# ==========================================
+.vercel/
+.netlify/
+
+# 11. EDITOR AND OPERATING SYSTEM FILES
+# ==========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+
+# 12. TEMPORARY FILES
+# ==========================================
+*.tmp
+*.temp
+tmp/
+temp/
+
+# 13. LOCAL DATABASE AND BACKUP FILES
+# ==========================================
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+backups/
+dump/
+
+# 14. PYTHON FILES (IF USED)
+# ==========================================
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
