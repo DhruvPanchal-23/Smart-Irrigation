@@ -1,2 +1,12 @@
-import Recommendation from '../models/Recommendation.js'; import { evaluateIrrigation } from '../utils/irrigationRules.js';
-export const createRecommendation = async (user, farm, weather) => Recommendation.create({ user, farm, ...evaluateIrrigation(weather), weatherSnapshot: weather, disclaimer: 'This advisory is based on weather data. Check local soil and crop conditions before irrigating.', generatedAt: new Date() });
+import Recommendation from '../models/Recommendation.js';
+import { evaluateIrrigation } from '../utils/irrigationRules.js';
+export const createRecommendation = async (user, farm, weather) =>
+  Recommendation.create({
+    user,
+    farm,
+    ...evaluateIrrigation(weather),
+    weatherSnapshot: weather,
+    disclaimer:
+      'This advisory is based on weather data. Check local soil and crop conditions before irrigating.',
+    generatedAt: new Date(),
+  });

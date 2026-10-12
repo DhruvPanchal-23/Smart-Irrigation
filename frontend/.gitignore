@@ -1,25 +1,67 @@
+# ==================================
+# DOCUMENTATION FILES
+# ==================================
+docs/
+*.md
+**/*.md
 
-# Logs
-logs
+# ==================================
+# GIT AND EDITOR CONFIGURATION
+# ==================================
+.gitattributes
+.editorconfig
+.prettierrc.json
+
+# ==================================
+# DOCKER
+# ==================================
+docker-compose.yml
+
+# ==================================
+# AI AGENT FILES
+# ==================================
+AGENTS.md
+.agents/
+
+# ==================================
+# DEPENDENCIES
+# ==================================
+node_modules/
+**/node_modules/
+
+# ==================================
+# ENVIRONMENT VARIABLES
+# ==================================
+.env
+.env.*
+**/.env
+**/.env.*
+
+# ==================================
+# FRONTEND BUILD FILES
+# ==================================
+dist/
+build/
+frontend/dist/
+
+# ==================================
+# LOG FILES
+# ==================================
 *.log
+logs/
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# ==================================
+# DEPLOYMENT GENERATED FILES
+# ==================================
+.vercel/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# ==================================
+# TEMPORARY FILES
+# ==================================
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
+*.tmp
+*.temp

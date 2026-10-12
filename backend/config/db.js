@@ -41,7 +41,9 @@ export const validateMongoUri = (uri, nodeEnv = process.env.NODE_ENV) => {
       throw configurationError('Production MONGODB_URI must use MongoDB Atlas SRV format');
     }
     if (databaseName !== REQUIRED_PRODUCTION_DATABASE) {
-      throw configurationError(`Production MongoDB database must be ${REQUIRED_PRODUCTION_DATABASE}`);
+      throw configurationError(
+        `Production MongoDB database must be ${REQUIRED_PRODUCTION_DATABASE}`,
+      );
     }
   }
 
@@ -57,7 +59,9 @@ const collectErrorSignals = (rootError) => {
     const error = pending.shift();
     if (!error || typeof error !== 'object' || visited.has(error)) continue;
     visited.add(error);
-    signals.push(`${String(error.code || '')} ${String(error.name || '')} ${String(error.message || '')}`.toLowerCase());
+    signals.push(
+      `${String(error.code || '')} ${String(error.name || '')} ${String(error.message || '')}`.toLowerCase(),
+    );
 
     pending.push(error.cause, error.reason);
     if (error.errors instanceof Map) pending.push(...error.errors.values());
@@ -72,17 +76,21 @@ const collectErrorSignals = (rootError) => {
 export const classifyDatabaseError = (error) => {
   const signals = collectErrorSignals(error);
 
-  if (signals.includes('db_configuration_error') || signals.includes('mongodb_uri')) return 'configuration';
+  if (signals.includes('db_configuration_error') || signals.includes('mongodb_uri'))
+    return 'configuration';
   if (/\b(enotfound|eservfail|enodata)\b|querysrv|querytxt/.test(signals)) return 'dns';
   if (/\b18\b|authentication failed|bad auth|auth failed/.test(signals)) return 'authentication';
-  if (/not whitelisted|ip access list|network access|connection refused/.test(signals)) return 'network_access';
+  if (/not whitelisted|ip access list|network access|connection refused/.test(signals))
+    return 'network_access';
   if (/etimedout|timed out|server selection/.test(signals)) return 'timeout';
   return 'database_unavailable';
 };
 
 export const getDatabaseStatus = () => ({
   connected: mongoose.connection.readyState === 1,
-  state: ['disconnected', 'connected', 'connecting', 'disconnecting'][mongoose.connection.readyState] || 'unknown',
+  state:
+    ['disconnected', 'connected', 'connecting', 'disconnecting'][mongoose.connection.readyState] ||
+    'unknown',
 });
 
 export const connectDatabase = async () => {

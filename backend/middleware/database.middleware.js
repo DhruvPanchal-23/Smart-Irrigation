@@ -14,6 +14,8 @@ export const requireDatabase = async (req, _res, next) => {
       method: req.method,
       path: req.originalUrl,
     });
-    return next(new AppError(503, 'Database service is temporarily unavailable', 'DATABASE_UNAVAILABLE'));
+    return next(
+      new AppError(503, 'Database service is temporarily unavailable', 'DATABASE_UNAVAILABLE'),
+    );
   }
 };
