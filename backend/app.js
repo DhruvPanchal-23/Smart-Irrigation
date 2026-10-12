@@ -17,15 +17,18 @@ app.use(cors({ origin: normalizeOrigin(process.env.FRONTEND_URL || 'http://local
 app.use(express.json({ limit: '20kb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1', requireDatabase);
-app.get(['/health', '/api/v1/health'], (_req, res) => res.json({
-  success: true,
-  message: 'Service is healthy',
-  data: { status: 'ok', database: getDatabaseStatus() },
-}));
-app.use('/api/v1/auth', authRoutes); 
-app.use('/api/v1/users', userRoutes); 
-app.use('/api/v1/farms', farmRoutes); 
-app.use('/api/v1/weather', weatherRoutes); 
+app.get(['/health', '/api/v1/health'], (_req, res) =>
+  res.json({
+    success: true,
+    message: 'Service is healthy',
+    data: { status: 'ok', database: getDatabaseStatus() },
+  }),
+);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/farms', farmRoutes);
+app.use('/api/v1/weather', weatherRoutes);
 app.use('/api/v1/recommendations', recommendationRoutes);
-app.use(notFound); app.use(errorHandler);
+app.use(notFound);
+app.use(errorHandler);
 export default app;

@@ -3766,4 +3766,25 @@ Transparent landing header is implemented; frontend lint/build pass.
 
 ## Dark appearance consistency - 12 October 2026
 
+## Repository indentation - 12 October 2026
+
+## Ponytail unused-code cleanup - 12 October 2026
+
+- [x] Remove obsolete authentication grid-gradient definitions shown in the editor screenshot; formatting/build pass.
+
+- [x] Remove unreferenced CSS and empty scaffold files; keep working features, responsive rules and four-space CSS formatting. Frontend checks, all 13 backend tests, seed validation and local HTTP/database health checks pass.
+- [ ] Verify desktop/mobile appearance, dark/light themes and keyboard interactions after cleanup in a connected browser.
+
+## Indentation verification
+
+- [x] Increase `index.css` indentation to four spaces; CSS format check and production build pass.
+
+- [x] Apply consistent indentation across supported project source/configuration files and provide `npm.cmd run format` / `npm.cmd run format:check` from `frontend/`. Format check, frontend lint/build and 13 backend tests pass. Prose, generated datasets, lockfiles, secrets and dependencies are excluded.
+
+## Dark appearance follow-up
+
+- [x] Rewrite decorative gradient/mask alpha colors with RGBA notation for clarity; frontend lint/build pass.
+
+- [x] Recheck `index.css` editor errors and replace invalid `#fff08` colors with `#ffffff08`. VS Code CSS validator reports no diagnostics; lint/build pass.
+
 - [ ] Visually verify corrected login/register fields, icons, password toggle, focus, autofill and theme persistence on desktop/mobile; review workspace tables, advisor results and profile controls in dark and light mode. CSS fixes pass lint/build and local HTTP delivery; 13 backend tests pass. No frontend test script or connected browser surface is available.

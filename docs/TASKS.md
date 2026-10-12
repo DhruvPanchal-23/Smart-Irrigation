@@ -3329,4 +3329,25 @@ Suitable for college submission
 
 ## Dark appearance consistency - 12 October 2026
 
+## Repository indentation - 12 October 2026
+
+## Ponytail unused-code cleanup - 12 October 2026
+
+- [x] Remove both obsolete login/register grid-gradient pseudo-element definitions (22 additional lines). Login uses the registration layout and the registration decoration is hidden by the final design. CSS formatting check and frontend build pass.
+
+- [x] Remove 304 unused/empty CSS rules, 352 unused selector branches and 91 exact redundant declarations; retain responsive fallbacks and runtime-generated library/status classes. CSS reduced by 1,577 lines. Remove 17 unimported empty modules plus three unused Vite starter files. Lint/build/format check, 13 backend tests and seed validation pass; frontend login and connected database health return HTTP 200.
+- [ ] Visually review desktop/mobile layouts in both themes after CSS cleanup. No connected browser is available.
+
+## Indentation verification
+
+- [x] Apply four-space indentation specifically to `frontend/src/index.css` and retain it through Prettier/EditorConfig overrides. CSS formatting check and frontend build pass.
+
+- [x] Format supported frontend/backend source and configuration files with two-space indentation. Add root Prettier/EditorConfig settings, ignore generated/private files, install pinned Prettier as a frontend development dependency and document format/check commands. Formatting check, frontend lint/build and all 13 backend tests pass.
+
+## Dark appearance follow-up
+
+- [x] Rework login/register decorative gradients into readable multiline rules using explicit RGBA transparency. Frontend lint/build pass.
+
+- [x] Fix invalid five-digit `#fff08` gradient colors in login/register decorative rules. VS Code CSS language-server diagnostics dropped from eight errors to zero; frontend lint and production build pass.
+
 - [-] Correct shared authentication field backgrounds, page gradient, card borders, links/focus and remaining workspace surfaces. CSS implemented; lint/build, all 13 backend tests, dev-server startup and authentication-route HTTP checks pass. Database health reports connected. Browser verification is pending; no browser surface is connected.

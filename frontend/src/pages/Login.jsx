@@ -35,9 +35,15 @@ export default function Login() {
     <section className="register-page registration-page">
       <div className="register-story">
         <div className="register-story-content">
-          <span className="register-story-mark"><FiDroplet /></span>
+          <span className="register-story-mark">
+            <FiDroplet />
+          </span>
           <p className="register-story-kicker">Weather-aware farming</p>
-          <h1>Welcome back<br />to KisanSetu.</h1>
+          <h1>
+            Welcome back
+            <br />
+            to KisanSetu.
+          </h1>
           <p className="register-story-copy">
             Turn changing weather into clearer irrigation decisions for every field you manage.
           </p>
@@ -53,7 +59,9 @@ export default function Login() {
           <div className="register-heading">
             <span className="eyebrow">Farmer portal</span>
             <h2>Welcome back</h2>
-            <p>New to KisanSetu? <Link to="/register">Create your account</Link></p>
+            <p>
+              New to KisanSetu? <Link to="/register">Create your account</Link>
+            </p>
           </div>
 
           <form className="register-form" onSubmit={submit}>
@@ -63,7 +71,15 @@ export default function Login() {
               <span>Email address</span>
               <span className="register-input-wrap">
                 <FiMail aria-hidden="true" />
-                <input name="email" type="email" value={form.email} onChange={change} autoComplete="email" placeholder="farmer@example.com" required />
+                <input
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={change}
+                  autoComplete="email"
+                  placeholder="farmer@example.com"
+                  required
+                />
               </span>
             </label>
 
@@ -71,8 +87,21 @@ export default function Login() {
               <span>Password</span>
               <span className="register-input-wrap">
                 <FiLock aria-hidden="true" />
-                <input name="password" type={showPassword ? 'text' : 'password'} value={form.password} onChange={change} autoComplete="current-password" placeholder="Enter your password" required />
-                <button className="register-password-toggle" type="button" onClick={() => setShowPassword((visible) => !visible)} aria-label={showPassword ? 'Hide password' : 'Show password'}>
+                <input
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  value={form.password}
+                  onChange={change}
+                  autoComplete="current-password"
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  className="register-password-toggle"
+                  type="button"
+                  onClick={() => setShowPassword((visible) => !visible)}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
                   {showPassword ? <FiEyeOff /> : <FiEye />}
                 </button>
               </span>

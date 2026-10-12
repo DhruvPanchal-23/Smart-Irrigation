@@ -915,4 +915,12 @@ The landing header is visible again and overlays the hero with a transparent bac
 
 ### Dark appearance consistency - 12 October 2026
 
+### Ponytail source cleanup - 12 October 2026
+
+Removed CSS selectors for retired dashboard/About/login sections and exact repeated declarations within identical selector/at-rule contexts. Different-value compatibility fallbacks, dynamic advisor status classes, accessibility utilities and Leaflet/Recharts selectors remain. `index.css` decreased from 7,729 to 6,152 lines; compiled CSS decreased from 136.71 KB to 114.97 KB. Four-space CSS indentation remains.
+
+Deleted the unimported Vite `App.css`, `react.svg` and `vite.svg` files and 17 empty placeholders: common Footer/Modal/Navbar/Sidebar, FarmList, IndiaMap/MarkerPopup, StatusBadge, ForecastCard/WeatherChart/WeatherDetails, useWeather, frontend constants/helpers/validators, backend location.service and backend constants. These were empty optional scaffolding; active layouts/dialogs and feature implementations remain. The earlier folder diagrams describe planned components, not an exact current file inventory.
+
+No dependencies, routes, models or business logic changed. Frontend lint/build/format checks, 13 existing backend tests and seed validation pass. Frontend login HTTP and backend database health return 200. Browser visual/mobile verification remains pending; no connected browser surface is available.
+
 Shared login/register field wrappers, icons and password controls use a single dark surface with transparent nested inputs. Authentication gradients and borders now use navy colors; links and focus rings use readable blue colors. Workspace table headers, advisor results/disclaimers, nested borders and icon surfaces follow dark appearance. Primary advisor actions retain blue/white styling. No dependencies or authentication behavior changed. Frontend lint/build and all 13 existing backend tests pass; both development servers started, authentication routes/CSS returned HTTP 200 and backend health confirmed a connected database. No frontend test script is configured. Browser visual/mobile/interaction verification remains pending because no browser surface is connected.

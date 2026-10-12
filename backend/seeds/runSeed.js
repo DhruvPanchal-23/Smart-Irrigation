@@ -16,7 +16,9 @@ const seedPath = path.join(__dirname, 'data', 'smart_irrigation_seed_5_years.jso
 const validateOnly = process.argv.includes('--validate-only');
 
 const objectIdFor = (sourceId) =>
-  new mongoose.Types.ObjectId(createHash('sha256').update(`kisansetu:${sourceId}`).digest('hex').slice(0, 24));
+  new mongoose.Types.ObjectId(
+    createHash('sha256').update(`kisansetu:${sourceId}`).digest('hex').slice(0, 24),
+  );
 
 const assert = (condition, message) => {
   if (!condition) throw new Error(message);
@@ -66,8 +68,14 @@ const loadAndTransformSeed = async (passwordHash) => {
   });
 
   const weatherHistories = seed.weatherHistories.map((weather) => {
-    assert(userIds.has(weather.user), `Weather ${weather._id} references unknown user ${weather.user}`);
-    assert(farmIds.has(weather.farm), `Weather ${weather._id} references unknown farm ${weather.farm}`);
+    assert(
+      userIds.has(weather.user),
+      `Weather ${weather._id} references unknown user ${weather.user}`,
+    );
+    assert(
+      farmIds.has(weather.farm),
+      `Weather ${weather._id} references unknown farm ${weather.farm}`,
+    );
     return {
       _id: weatherIds.get(weather._id),
       user: userIds.get(weather.user),
@@ -83,10 +91,19 @@ const loadAndTransformSeed = async (passwordHash) => {
   });
 
   const recommendations = seed.recommendations.map((recommendation) => {
-    assert(userIds.has(recommendation.user), `Recommendation ${recommendation._id} references unknown user ${recommendation.user}`);
-    assert(farmIds.has(recommendation.farm), `Recommendation ${recommendation._id} references unknown farm ${recommendation.farm}`);
+    assert(
+      userIds.has(recommendation.user),
+      `Recommendation ${recommendation._id} references unknown user ${recommendation.user}`,
+    );
+    assert(
+      farmIds.has(recommendation.farm),
+      `Recommendation ${recommendation._id} references unknown farm ${recommendation.farm}`,
+    );
     const weatherHistoryId = recommendation.weatherSnapshot?.weatherHistoryId;
-    assert(!weatherHistoryId || weatherIds.has(weatherHistoryId), `Recommendation ${recommendation._id} references unknown weather ${weatherHistoryId}`);
+    assert(
+      !weatherHistoryId || weatherIds.has(weatherHistoryId),
+      `Recommendation ${recommendation._id} references unknown weather ${weatherHistoryId}`,
+    );
     return {
       _id: objectIdFor(recommendation._id),
       user: userIds.get(recommendation.user),
@@ -106,8 +123,12 @@ const loadAndTransformSeed = async (passwordHash) => {
 
   users.forEach((document, index) => validateDocument(User, document, seed.users[index]._id));
   farms.forEach((document, index) => validateDocument(Farm, document, seed.farms[index]._id));
-  weatherHistories.forEach((document, index) => validateDocument(WeatherHistory, document, seed.weatherHistories[index]._id));
-  recommendations.forEach((document, index) => validateDocument(Recommendation, document, seed.recommendations[index]._id));
+  weatherHistories.forEach((document, index) =>
+    validateDocument(WeatherHistory, document, seed.weatherHistories[index]._id),
+  );
+  recommendations.forEach((document, index) =>
+    validateDocument(Recommendation, document, seed.recommendations[index]._id),
+  );
 
   return { metadata: seed.metadata, users, farms, weatherHistories, recommendations };
 };
@@ -120,13 +141,19 @@ const insertInBatches = async (Model, documents, batchSize = 1000) => {
 
 try {
   const password = process.env.SEED_USER_PASSWORD;
-  if (!validateOnly) assert(password && password.length >= 8, 'SEED_USER_PASSWORD must contain at least 8 characters');
+  if (!validateOnly)
+    assert(
+      password && password.length >= 8,
+      'SEED_USER_PASSWORD must contain at least 8 characters',
+    );
   const validationPlaceholder = createHash('sha256').update(seedPath).digest('hex');
   const passwordHash = await bcrypt.hash(password || validationPlaceholder, 12);
   const data = await loadAndTransformSeed(passwordHash);
 
   if (validateOnly) {
-    console.log(`Seed is valid: ${data.users.length} user, ${data.farms.length} farms, ${data.weatherHistories.length} weather records, ${data.recommendations.length} recommendations.`);
+    console.log(
+      `Seed is valid: ${data.users.length} user, ${data.farms.length} farms, ${data.weatherHistories.length} weather records, ${data.recommendations.length} recommendations.`,
+    );
     process.exit(0);
   }
 
@@ -134,8 +161,12 @@ try {
   const userIds = data.users.map(({ _id }) => _id);
   const farmIds = data.farms.map(({ _id }) => _id);
 
-  await Recommendation.deleteMany({ $or: [{ user: { $in: userIds } }, { farm: { $in: farmIds } }] });
-  await WeatherHistory.deleteMany({ $or: [{ user: { $in: userIds } }, { farm: { $in: farmIds } }] });
+  await Recommendation.deleteMany({
+    $or: [{ user: { $in: userIds } }, { farm: { $in: farmIds } }],
+  });
+  await WeatherHistory.deleteMany({
+    $or: [{ user: { $in: userIds } }, { farm: { $in: farmIds } }],
+  });
   await Farm.deleteMany({ _id: { $in: farmIds } });
   await User.deleteMany({ _id: { $in: userIds } });
 
@@ -144,7 +175,9 @@ try {
   await insertInBatches(WeatherHistory, data.weatherHistories);
   await insertInBatches(Recommendation, data.recommendations);
 
-  console.log(`Seed imported into ${mongoose.connection.name}: ${data.users.length} user, ${data.farms.length} farms, ${data.weatherHistories.length} weather records, ${data.recommendations.length} recommendations.`);
+  console.log(
+    `Seed imported into ${mongoose.connection.name}: ${data.users.length} user, ${data.farms.length} farms, ${data.weatherHistories.length} weather records, ${data.recommendations.length} recommendations.`,
+  );
 } catch (error) {
   console.error(`Seed failed: ${error.message}`);
   process.exitCode = 1;

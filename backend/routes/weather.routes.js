@@ -1,2 +1,9 @@
-import { Router } from 'express'; import { authenticate } from '../middleware/auth.middleware.js'; import { validateObjectId } from '../middleware/validation.middleware.js'; import { getCurrentWeather, getWeatherHistory } from '../controllers/weather.controller.js';
-const router = Router(); router.use(authenticate); router.get('/:farmId', validateObjectId(), getCurrentWeather); router.get('/:farmId/history', validateObjectId(), getWeatherHistory); export default router;
+import { Router } from 'express';
+import { authenticate } from '../middleware/auth.middleware.js';
+import { validateObjectId } from '../middleware/validation.middleware.js';
+import { getCurrentWeather, getWeatherHistory } from '../controllers/weather.controller.js';
+const router = Router();
+router.use(authenticate);
+router.get('/:farmId', validateObjectId(), getCurrentWeather);
+router.get('/:farmId/history', validateObjectId(), getWeatherHistory);
+export default router;

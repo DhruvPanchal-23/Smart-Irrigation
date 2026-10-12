@@ -1,2 +1,10 @@
-import { Router } from 'express'; import { authenticate } from '../middleware/auth.middleware.js'; import { getProfile, updateProfile, changePassword } from '../controllers/user.controller.js'; import { requireFields } from '../middleware/validation.middleware.js';
-const router = Router(); router.use(authenticate); router.get('/profile', getProfile); router.put('/profile', updateProfile); router.put('/change-password', requireFields('currentPassword', 'newPassword'), changePassword); export default router;
+import { Router } from 'express';
+import { authenticate } from '../middleware/auth.middleware.js';
+import { getProfile, updateProfile, changePassword } from '../controllers/user.controller.js';
+import { requireFields } from '../middleware/validation.middleware.js';
+const router = Router();
+router.use(authenticate);
+router.get('/profile', getProfile);
+router.put('/profile', updateProfile);
+router.put('/change-password', requireFields('currentPassword', 'newPassword'), changePassword);
+export default router;

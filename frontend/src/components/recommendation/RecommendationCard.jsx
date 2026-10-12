@@ -1,1 +1,15 @@
-export default function RecommendationCard({item}){if(!item)return null;return <article className="card recommendation"><span className={'status '+item.status}>{item.status.replaceAll('_',' ')}</span><h2>{item.title}</h2><p>{item.reason}</p><div className="action-box"><strong>Recommended action</strong><p>{item.recommendedAction}</p></div><small>{item.disclaimer}</small></article>;}
+export default function RecommendationCard({ item }) {
+  if (!item) return null;
+  return (
+    <article className="card recommendation">
+      <span className={'status ' + item.status}>{item.status.replaceAll('_', ' ')}</span>
+      <h2>{item.title}</h2>
+      <p>{item.reason}</p>
+      <div className="action-box">
+        <strong>Recommended action</strong>
+        <p>{item.recommendedAction}</p>
+      </div>
+      <small>{item.disclaimer}</small>
+    </article>
+  );
+}
